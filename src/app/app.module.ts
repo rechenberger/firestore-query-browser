@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { QueryBrowserComponent } from './components/query-browser/query-browser.component';
+import { AppSwitcherComponent } from './components/app-switcher/app-switcher.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    QueryBrowserComponent
+    QueryBrowserComponent,
+    AppSwitcherComponent
   ],
   imports: [
     BrowserModule,
