@@ -1,0 +1,8 @@
+<mat-card>
+  <ng-container *ngIf="isLoggedIn; else login">
+    <button mat-button (click)="logout()">LOGIN</button>
+  </ng-container>
+  <ng-template #login>
+    <button mat-button (click)="loginWithGoogle()">LOGIN WITH GOOGLE</button>
+  </ng-template>
+</mat-card>

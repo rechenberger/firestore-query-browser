@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { QueryBrowserComponent } from './components/query-browser/query-browser.component';
 import { AppSwitcherComponent } from './components/app-switcher/app-switcher.component';
 import { MainComponent } from './components/main/main.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MainComponent } from './components/main/main.component';
     AppComponent,
     QueryBrowserComponent,
     AppSwitcherComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
