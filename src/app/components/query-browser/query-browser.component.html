@@ -1,3 +1,10 @@
 <mat-card>
   <h3>Browser</h3>
+  <mat-form-field>
+    <input matInput placeholder="path" [(ngModel)]="path">
+  </mat-form-field>
+  <button mat-button (click)="fetchResults()">FETCH</button>
+</mat-card>
+<mat-card>
+  <pre>{{result | async | json}}</pre>
 </mat-card>

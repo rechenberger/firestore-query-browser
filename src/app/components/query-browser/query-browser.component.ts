@@ -8,11 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryBrowserComponent implements OnInit {
 
+  path: string = 'mandants'
+  result = Promise.resolve(null)
+
   constructor(
     private data: DataService
   ) { }
 
   ngOnInit() {
+    this.fetchResults()
+  }
+
+  fetchResults() {
+    this.result = this.data.get({
+      path: this.path
+    })
   }
 
 }
