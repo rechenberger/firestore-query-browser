@@ -8,6 +8,24 @@ body {
   margin: 0;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1
+}
+
 mat-card {
   margin-bottom: 16px;
+}
+
+mat-card > mat-progress-bar:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right :0;
 }

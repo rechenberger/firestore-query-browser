@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryBrowserComponent implements OnInit {
 
-  path: string = 'mandants'
+  path: string = 'mandants/test'
   result = Promise.resolve(null)
+  loading = false
 
   constructor(
     private data: DataService
@@ -20,9 +21,12 @@ export class QueryBrowserComponent implements OnInit {
   }
 
   fetchResults() {
+    this.loading = true
     this.result = this.data.get({
       path: this.path
     })
+    this.result
+      .then(() => this.loading = false)
   }
 
 }

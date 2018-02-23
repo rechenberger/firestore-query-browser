@@ -21,9 +21,10 @@ export class DataService {
     const firestore = firebase.firestore(this.apps.activeApp)
 
     const data = options.isCollection
-      ? firestore.collection('mandants').get()
+      ? firestore.collection(options.path).get()
         .then(snap => snap.docs.map(doc => doc.data()))
-      : null
+      : firestore.doc(options.path).get()
+        .then(snap => snap.data())
 
     return data
   }

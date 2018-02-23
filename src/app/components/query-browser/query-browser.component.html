@@ -1,10 +1,13 @@
 <mat-card>
   <h3>Browser</h3>
-  <mat-form-field>
-    <input matInput placeholder="path" [(ngModel)]="path">
-  </mat-form-field>
-  <button mat-button (click)="fetchResults()">FETCH</button>
+  <div class="flex-row">
+    <mat-form-field class="flex-1">
+      <input matInput placeholder="path" [(ngModel)]="path" (keyup.enter)="fetchResults()">
+    </mat-form-field>
+    <button mat-button (click)="fetchResults()">FETCH</button>
+  </div>
 </mat-card>
 <mat-card>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
   <pre>{{result | async | json}}</pre>
 </mat-card>
