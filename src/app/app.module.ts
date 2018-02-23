@@ -1,5 +1,5 @@
 import { AppsService } from './services/apps.service';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './modules/material.module';
 import { DataService } from './services/data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,13 +16,15 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { QueryBrowserComponent } from './components/query-browser/query-browser.component';
 import { AppSwitcherComponent } from './components/app-switcher/app-switcher.component';
+import { MainComponent } from './components/main/main.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     QueryBrowserComponent,
-    AppSwitcherComponent
+    AppSwitcherComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

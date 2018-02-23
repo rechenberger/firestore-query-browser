@@ -1,3 +1,4 @@
+import { MainComponent } from './components/main/main.component';
 import { QueryBrowserComponent } from './components/query-browser/query-browser.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -5,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    component: QueryBrowserComponent
+    component: MainComponent
   },
   {
     path: '**',
