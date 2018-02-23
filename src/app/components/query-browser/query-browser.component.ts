@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +14,8 @@ export class QueryBrowserComponent implements OnInit {
   loading = false
 
   constructor(
-    private data: DataService
+    private data: DataService,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class QueryBrowserComponent implements OnInit {
       path: this.path
     })
     this.result
+      .catch(err => this.snackbar.open(err, 'OK', { duration: 5000 }))
       .then(() => this.loading = false)
   }
 
