@@ -3,5 +3,11 @@
 
 body {
   background: #efefef;
-  font-family: 'Roboto', sans-serif
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+mat-card {
+  margin-bottom: 16px;
 }
