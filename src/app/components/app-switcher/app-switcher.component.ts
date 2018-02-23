@@ -1,5 +1,6 @@
 import { AppsService } from './../../services/apps.service';
 import { Component, OnInit } from '@angular/core'
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-app-switcher',
@@ -22,14 +23,20 @@ export class AppSwitcherComponent implements OnInit {
   apps = this.appsService.apps()
 
   constructor(
-    private appsService: AppsService
+    private appsService: AppsService,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
   }
 
   submitNew() {
-    this.appsService.newApp(this.configString)
+    try {
+
+      this.appsService.newApp(this.configString)
+    } catch (e) {
+      this.snackbar.open(e, 'OK', { duration: 5000 })
+    }
   }
 
   switch() {

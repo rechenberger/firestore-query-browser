@@ -1,8 +1,20 @@
 import { Injectable } from '@angular/core'
 import * as firebase from 'firebase'
+import * as _ from 'lodash'
 
 @Injectable()
 export class AppsService {
+
+  activeApp
+  private _activeProjectId
+
+  get activeProjectId() {
+    return this._activeProjectId
+  }
+  set activeProjectId(activeProjectId: string) {
+    this._activeProjectId = activeProjectId
+    this.activeApp = _.find(firebase.apps, app => app.options.projectId == this.activeProjectId)
+  }
 
   constructor() {
     this.loadApps()
@@ -33,11 +45,11 @@ export class AppsService {
     const configs = JSON.parse(string)
     configs.forEach(config => {
       this.newApp(config, false)
-    });
+      this.activeProjectId = config.projectId
+    })
   }
 
   apps() {
-    console.log('firebase.apps', firebase.apps)
     return firebase.apps.map(app => app.options)
   }
 
