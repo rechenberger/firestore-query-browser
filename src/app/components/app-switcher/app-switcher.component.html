@@ -1,7 +1,7 @@
 <mat-card>
   <h3>App Switchter</h3>
 
-  <mat-radio-group [(ngModel)]="favoriteSeason">
+  <mat-radio-group [(ngModel)]="appsService.activeProjectId">
     <ng-container *ngFor="let app of apps">
       <mat-radio-button [value]="app.projectId">
         {{app.projectId}}

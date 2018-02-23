@@ -23,7 +23,7 @@ export class AppSwitcherComponent implements OnInit {
   apps = this.appsService.apps()
 
   constructor(
-    private appsService: AppsService,
+    public appsService: AppsService,
     private snackbar: MatSnackBar
   ) { }
 

@@ -30,6 +30,7 @@ export class AppsService {
     if (typeof config == 'string') config = this.string2config(config)
     const projectId = config.projectId
     firebase.initializeApp(config, projectId)
+    this.activeProjectId = projectId
     if (store) this.storeApps()
   }
 
@@ -44,7 +45,6 @@ export class AppsService {
     const configs = JSON.parse(string)
     configs.forEach(config => {
       this.newApp(config, false)
-      this.activeProjectId = config.projectId
     })
   }
 
