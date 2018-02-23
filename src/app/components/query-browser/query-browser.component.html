@@ -2,9 +2,24 @@
   <h3>Browser</h3>
   <div class="flex-row">
     <mat-form-field class="flex-1">
-      <input matInput placeholder="path" [(ngModel)]="path" (keyup.enter)="fetchResults()">
+      <input matInput placeholder="path" [(ngModel)]="options.path" (keyup.enter)="fetchResults()">
     </mat-form-field>
-    <button mat-button (click)="fetchResults()">FETCH</button>
+  </div>
+  <div class="flex-row">
+    <mat-form-field class="flex-1">
+      <input matInput placeholder="query" [(ngModel)]="options.query" (keyup.enter)="fetchResults()">
+    </mat-form-field>
+  </div>
+  <div class="flex-row">
+    <div class="flex-1">
+      Examples
+      <ul>
+        <ng-container *ngFor="let queryExample of queryExamples">
+          <li (click)="options.query = queryExample.query">{{queryExample.query}}</li>
+        </ng-container>
+      </ul>
+    </div>
+    <button mat-button color="primary" (click)="fetchResults()">FETCH</button>
   </div>
 </mat-card>
 <mat-card>

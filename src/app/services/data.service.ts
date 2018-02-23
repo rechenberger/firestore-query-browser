@@ -15,18 +15,22 @@ export class DataService {
   async get(options) {
     options = options || {}
     options.path = options.path || ''
-    options.isCollection = options.isCollection
-      || (options.path.split('/').length % 2 == 1)
-
+    const isCollection = (options.path.split('/').length % 2 == 1)
     const firestore = firebase.firestore(this.apps.activeApp)
 
-    const data = options.isCollection
-      ? firestore.collection(options.path).get()
-        .then(snap => snap.docs.map(doc => doc.data()))
-      : firestore.doc(options.path).get()
-        .then(snap => snap.data())
+    if (isCollection) {
+      let ref = firestore.collection(options.path)
 
-    return data
+      const query = options.query
+        ? eval(options.query)
+        : ref
+
+      return query.get()
+        .then(snap => snap.docs.map(doc => doc.data()))
+    } else {
+      return firestore.doc(options.path).get()
+        .then(snap => snap.data())
+    }
   }
 
 

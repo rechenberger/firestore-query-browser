@@ -9,7 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryBrowserComponent implements OnInit {
 
-  path: string = 'mandants/test'
+  options = {
+    path: 'mandants',
+    query: `ref`
+  }
+
+  queryExamples = [
+    {
+      query: `ref`,
+      label: `No Query`
+    },
+    {
+      query: `ref.where('id', '==', 'test')`,
+      label: `Filters by id`
+    },
+    {
+      query: `ref.orderBy('userCount')`,
+      label: `orders by userCount`
+    }
+  ]
+
   result = Promise.resolve(null)
   loading = false
 
@@ -24,9 +43,7 @@ export class QueryBrowserComponent implements OnInit {
 
   fetchResults() {
     this.loading = true
-    this.result = this.data.get({
-      path: this.path
-    })
+    this.result = this.data.get(this.options)
     this.result
       .catch(err => this.snackbar.open(err, 'OK', { duration: 5000 }))
       .then(() => this.loading = false)
