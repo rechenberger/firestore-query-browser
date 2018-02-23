@@ -1,3 +1,4 @@
+import { AppsService } from './services/apps.service';
 import { MaterialModule } from './material.module';
 import { DataService } from './services/data.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +27,8 @@ import { AppSwitcherComponent } from './components/app-switcher/app-switcher.com
     BrowserAnimationsModule
   ],
   providers: [
-    DataService
+    DataService,
+    AppsService
   ],
   bootstrap: [AppComponent]
 })

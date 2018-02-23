@@ -1,5 +1,5 @@
+import { AppsService } from './../../services/apps.service';
 import { Component, OnInit } from '@angular/core'
-import * as firebase from 'firebase'
 
 @Component({
   selector: 'app-app-switcher',
@@ -17,16 +17,22 @@ export class AppSwitcherComponent implements OnInit {
     messagingSenderId: "920940631373"
   }`
 
-  constructor() { }
+  showNew = false
+
+  apps = this.appsService.apps()
+
+  constructor(
+    private appsService: AppsService
+  ) { }
 
   ngOnInit() {
   }
 
+  submitNew() {
+    this.appsService.newApp(this.configString)
+  }
+
   switch() {
-    const json = this.configString.replace(/([a-zA-Z]*)(: ")/g, `"$1"$2`)
-    const config = JSON.parse(json)
-    firebase.initializeApp(config, 'app1')
-    console.log('firebase.apps', firebase.apps)
   }
 
 }

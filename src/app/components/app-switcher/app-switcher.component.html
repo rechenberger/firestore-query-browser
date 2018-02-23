@@ -1,7 +1,22 @@
 <mat-card>
   <h3>App Switchter</h3>
-  <mat-form-field>
-    <textarea matInput placeholder="config" [(ngModel)]="configString" matTextareaAutosize></textarea>
-  </mat-form-field>
-  <button mat-button (click)="switch()">SWITCH</button>
+
+  <mat-radio-group [(ngModel)]="favoriteSeason">
+    <ng-container *ngFor="let app of apps">
+      <mat-radio-button [value]="app.projectId">
+        {{app.projectId}}
+      </mat-radio-button>
+    </ng-container>
+  </mat-radio-group>
+
+  <ng-container *ngIf="showNew; else newBtn">
+    <mat-form-field>
+      <textarea matInput placeholder="config" [(ngModel)]="configString" matTextareaAutosize></textarea>
+    </mat-form-field>
+    <button mat-button color="primary" (click)="submitNew()">SUBMIT NEW</button>
+    <button mat-button (click)="showNew = false">CANCEL</button>
+  </ng-container>
+  <ng-template #newBtn>
+    <button mat-button (click)="showNew = true">NEW</button>
+  </ng-template>
 </mat-card>
