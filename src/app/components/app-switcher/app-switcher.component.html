@@ -1,2 +1,7 @@
-<textarea [(ngModel)]="configString"></textarea>
-<button (click)="switch()">Switch</button>
+<mat-card>
+  <h3>App Switchter</h3>
+  <mat-form-field>
+    <textarea matInput placeholder="config" [(ngModel)]="configString" matTextareaAutosize></textarea>
+  </mat-form-field>
+  <button mat-button (click)="switch()">SWITCH</button>
+</mat-card>
