@@ -43,6 +43,7 @@ export class AppsService {
   loadApps() {
     const string = localStorage.getItem('fqb-apps')
     const configs = JSON.parse(string)
+    if (!configs) return
     configs.forEach(config => {
       this.newApp(config, false)
     })

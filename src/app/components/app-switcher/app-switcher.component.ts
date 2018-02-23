@@ -20,26 +20,30 @@ export class AppSwitcherComponent implements OnInit {
 
   showNew = false
 
-  apps = this.appsService.apps()
+  apps
 
   constructor(
     public appsService: AppsService,
     private snackbar: MatSnackBar
-  ) { }
+  ) {
+    this.reloadApps()
+  }
 
   ngOnInit() {
   }
 
   submitNew() {
     try {
-
       this.appsService.newApp(this.configString)
+      this.reloadApps()
+      this.showNew = false
     } catch (e) {
       this.snackbar.open(e, 'OK', { duration: 5000 })
     }
   }
 
-  switch() {
+  reloadApps() {
+    this.apps = this.appsService.apps()
   }
 
 }
