@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { AppsService } from './services/apps.service';
 import { MaterialModule } from './modules/material.module';
 import { DataService } from './services/data.service';
@@ -36,7 +37,8 @@ import { MainComponent } from './components/main/main.component';
   ],
   providers: [
     DataService,
-    AppsService
+    AppsService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
