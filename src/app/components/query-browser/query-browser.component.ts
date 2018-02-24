@@ -26,6 +26,10 @@ export class QueryBrowserComponent implements OnInit {
     {
       query: `ref.orderBy('userCount')`,
       label: `orders by userCount`
+    },
+    {
+      query: `ref.limit(2)`,
+      label: ``
     }
   ]
 
