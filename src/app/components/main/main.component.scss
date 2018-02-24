@@ -2,4 +2,13 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 8px;
+  position: relative;
+}
+
+@media (min-width: 1300px) {
+  app-login {
+    position: absolute;
+    right:-258px;
+    width: 250px;
+  }
 }
