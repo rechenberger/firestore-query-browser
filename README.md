@@ -1,27 +1,28 @@
-# FirestoreQueryBrowser
+# Firestore Query Browser
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
+This project is hosted at [https://firestore-query-browser.firebaseapp.com/](https://firestore-query-browser.firebaseapp.com/).
 
-## Development server
+## Usage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Get the your Firebase Project's config from the [Firebase Console](ttps://console.firebase.google.com/). The config should looks like this:
+```json
+{
+  apiKey: "AIzaSyCzpisEJhHYFR09Rh48NAQX6g3gwG2v2U0",
+  authDomain: "firestore-query-browser.firebaseapp.com",
+  databaseURL: "https://firestore-query-browser.firebaseio.com",
+  projectId: "firestore-query-browser",
+  storageBucket: "firestore-query-browser.appspot.com",
+  messagingSenderId: "567385024694"
+}
+```
+2. Go to [https://firestore-query-browser.firebaseapp.com/](https://firestore-query-browser.firebaseapp.com/), click on 'New', paste the config and click on 'Add App'
 
-## Code scaffolding
+3. Optionally, you can add `firestore-query-browser.firebaseapp.com/` to your Authorized domains in the [Firebase Console](ttps://console.firebase.google.com/) --> Authentication --> Sign-In-Methods --> Authorized domains
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+4. Insert a path and a query (or click on one of the Examples below)
+5. click 'fetch' and find the results below.
 
-## Build
+## Development
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
