@@ -13,11 +13,13 @@ export class AppsService {
   }
   set activeProjectId(activeProjectId: string) {
     this._activeProjectId = activeProjectId
+    localStorage.setItem('fqb-activeProjectId', this.activeProjectId)
     this.activeApp = _.find(firebase.apps, app => app.options.projectId == this.activeProjectId)
   }
 
   constructor() {
     this.loadApps()
+    this.activeProjectId = localStorage.getItem('fqb-activeProjectId')
   }
 
   string2config(configString: string): any {
@@ -30,8 +32,10 @@ export class AppsService {
     if (typeof config == 'string') config = this.string2config(config)
     const projectId = config.projectId
     firebase.initializeApp(config, projectId)
-    this.activeProjectId = projectId
-    if (store) this.storeApps()
+    if (store) {
+      this.storeApps()
+      this.activeProjectId = projectId
+    }
   }
 
   storeApps() {
