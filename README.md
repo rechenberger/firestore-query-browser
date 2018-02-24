@@ -5,7 +5,7 @@ This project is hosted at [https://firestore-query-browser.firebaseapp.com/](htt
 ## Usage
 
 1. Get the your Firebase Project's config from the [Firebase Console](ttps://console.firebase.google.com/). The config should looks like this:
-```json
+```js
 {
   apiKey: "AIzaSyCzpisEJhHYFR09Rh48NAQX6g3gwG2v2U0",
   authDomain: "firestore-query-browser.firebaseapp.com",
