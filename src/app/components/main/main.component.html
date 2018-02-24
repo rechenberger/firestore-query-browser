@@ -1,5 +1,10 @@
 <div class="main-container">
-  <h1>Firestore Query Browser</h1>
+  <div class="flex-row">
+    <h1>Firestore Query Browser</h1>
+    <a mat-icon-button class="fa-btn" href="https://github.com/rechenberger/firestore-query-browser">
+      <i class="fa fab fa-github"></i>
+    </a>
+  </div>
   <div class="flex-row" style="align-items: flex-start">
     <app-app-switcher class="flex-1"></app-app-switcher>
     <app-login style="margin-left: 16px" *ngIf="apps.activeProjectId"></app-login>
@@ -8,4 +13,11 @@
   <ng-container *ngIf="apps.activeProjectId">
     <app-query-browser></app-query-browser>
   </ng-container>
+  <div class="footer flex-row">
+    <a href="https://github.com/rechenberger/LICENSE">MIT License</a>
+    <a href="https://github.com/rechenberger">&copy; 2018 Tristan Rechenberger</a>
+    <a href="https://github.com/rechenberger/firestore-query-browser">github</a>
+  </div>
+  <p>
+  </p>
 </div>

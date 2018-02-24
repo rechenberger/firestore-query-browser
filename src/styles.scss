@@ -30,3 +30,15 @@ mat-card > mat-progress-bar:first-child {
   left: 0;
   right :0;
 }
+
+.fa-btn {
+  font-size: 1.5em;
+}
+
+a {
+  color: rgba(0,0,0,0.78);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
