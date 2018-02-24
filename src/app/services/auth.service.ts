@@ -5,15 +5,13 @@ import { Injectable } from '@angular/core'
 @Injectable()
 export class AuthService {
 
-  currentUser
+  get currentUser() {
+    return this.auth.currentUser
+  }
 
   constructor(
     private apps: AppsService
-  ) {
-    this.auth.onAuthStateChanged(user => {
-      this.currentUser = user
-    })
-  }
+  ) { }
 
   get auth() {
     return firebase.auth(this.apps.activeApp)

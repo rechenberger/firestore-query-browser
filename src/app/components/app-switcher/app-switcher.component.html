@@ -3,9 +3,11 @@
 
   <mat-radio-group [(ngModel)]="appsService.activeProjectId">
     <ng-container *ngFor="let app of apps">
-      <mat-radio-button [value]="app.projectId">
-        {{app.projectId}}
-      </mat-radio-button>
+      <ng-container *ngIf="app.projectId">
+        <mat-radio-button [value]="app.projectId">
+          {{app.projectId}}
+        </mat-radio-button>
+      </ng-container>
     </ng-container>
   </mat-radio-group>
 
