@@ -15,7 +15,7 @@ This project is hosted at [https://firestore-query-browser.firebaseapp.com/](htt
   messagingSenderId: "567385024694"
 }
 ```
-2. Go to [https://firestore-query-browser.firebaseapp.com/](https://firestore-query-browser.firebaseapp.com/), click on 'New', paste the config and click on 'Add App'
+2. Go to [https://firestore-query-browser.firebaseapp.com/](https://firestore-query-browser.firebaseapp.com/), paste the config and click on 'Add App'
 
 3. Optionally, you can add `firestore-query-browser.firebaseapp.com/` to your Authorized domains in the [Firebase Console](ttps://console.firebase.google.com/) --> Authentication --> Sign-In-Methods --> Authorized domains
 

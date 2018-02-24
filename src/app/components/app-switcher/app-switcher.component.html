@@ -11,14 +11,16 @@
     </ng-container>
   </mat-radio-group>
 
-  <ng-container *ngIf="showNew; else newBtn">
+  <ng-container *ngIf="(showNew || !appsService.activeProjectId); else newBtn">
     <mat-form-field>
       <textarea matInput placeholder="config" [(ngModel)]="configString" matTextareaAutosize></textarea>
     </mat-form-field>
-    <button mat-button color="primary" (click)="submitNew()">ADD APP</button>
-    <button mat-button (click)="showNew = false">CANCEL</button>
+    <div>
+      <button mat-button color="primary" (click)="submitNew()">ADD APP</button>
+      <button mat-button (click)="showNew = false" *ngIf="appsService.activeProjectId">CANCEL</button>
+    </div>
   </ng-container>
   <ng-template #newBtn>
-    <button mat-button (click)="showNew = true">NEW</button>
+    <button mat-button (click)="showNew = true">ADD ANOTHER APP</button>
   </ng-template>
 </mat-card>
