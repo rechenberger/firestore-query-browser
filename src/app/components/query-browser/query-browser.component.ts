@@ -1,6 +1,8 @@
 import { MatSnackBar } from '@angular/material';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-query-browser',
@@ -9,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryBrowserComponent implements OnInit {
 
-  options = {
-    path: 'mandants',
-    query: `ref`
-  }
+  // options = {
+  //   path: 'mandants',
+  //   query: `ref`
+  // }
+  path = 'mandants'
+  query = 'ref'
 
   queryExamples = [
     {
@@ -68,29 +72,53 @@ export class QueryBrowserComponent implements OnInit {
     },
   ]
 
+  historyEntries = this.storage.watch('history', [])
+
   result = Promise.resolve(null)
   loading = false
 
   constructor(
     private data: DataService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private storage: StorageService
   ) { }
 
   ngOnInit() {
-    this.fetchResults()
+    this.fetchResults({
+      addToHistory: false
+    })
   }
 
-  fetchResults() {
+  fetchResults(options = { addToHistory: true }) {
+    const { addToHistory } = options
     this.loading = true
-    this.result = this.data.get(this.options)
+    this.result = this.data.get({
+      path: this.path,
+      query: this.query
+    })
     this.result
       .catch(err => this.snackbar.open(err, 'OK', { duration: 5000 }))
       .then(() => this.loading = false)
+    if (addToHistory) {
+      this.historyEntries
+        .take(1)
+        .do(entries => {
+          const found = !!_.find(entries, entry => entry.path === this.path && entry.query === this.query)
+          if (found) return
+          this.storage.set('history', [...entries, { path: this.path, query: this.query }])
+        })
+        .subscribe(() => null)
+    }
   }
 
   addSnippet(snippet) {
-    this.options.query += `
+    this.query += `
   ${snippet.content}`
+  }
+
+  setEntry(entry) {
+    this.path = entry.path
+    this.query = entry.query
   }
 
 }

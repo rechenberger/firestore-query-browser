@@ -19,6 +19,10 @@ import { QueryBrowserComponent } from './components/query-browser/query-browser.
 import { AppSwitcherComponent } from './components/app-switcher/app-switcher.component';
 import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
+import { StorageService } from './services/storage.service';
+
+import 'rxjs/add/operator/do'
+import 'rxjs/add/operator/take'
 
 
 @NgModule({
@@ -40,7 +44,8 @@ import { LoginComponent } from './components/login/login.component';
   providers: [
     DataService,
     AppsService,
-    AuthService
+    AuthService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

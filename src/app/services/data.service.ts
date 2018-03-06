@@ -13,6 +13,7 @@ export class DataService {
   }
 
   async get(options) {
+    console.log('options', options)
     options = options || {}
     options.path = options.path || ''
     const isCollection = (options.path.split('/').length % 2 == 1)
