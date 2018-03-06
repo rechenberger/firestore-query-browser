@@ -11,6 +11,14 @@
         (keyup.control.enter)="fetchResults()" (keyup.shift.enter)="fetchResults()"></textarea>
     </mat-form-field>
   </div>
+  <div class="flex-column">
+    Add Snippet
+    <div class="flex-row flex-1">
+      <ng-container *ngFor="let snippet of snippets">
+        <button mat-button (click)="addSnippet(snippet)">{{snippet.name}}</button>
+      </ng-container>
+    </div>
+  </div>
   <div class="flex-row">
     <div class="flex-1">
       Examples

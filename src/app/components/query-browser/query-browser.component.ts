@@ -33,6 +33,41 @@ export class QueryBrowserComponent implements OnInit {
     }
   ]
 
+  snippets = [
+    {
+      name: 'where',
+      content: `.where('', '', '')`,
+    },
+    {
+      name: 'where ==',
+      content: `.where('', '==', '')`,
+    },
+    {
+      name: 'limit',
+      content: `.limit()`,
+    },
+    {
+      name: 'orderBy',
+      content: `.orderBy('', 'asc')`,
+    },
+    {
+      name: 'startAt',
+      content: `startAt()`,
+    },
+    {
+      name: 'endAt',
+      content: `endAt()`,
+    },
+    {
+      name: 'startAfter',
+      content: `startAfter()`,
+    },
+    {
+      name: 'endAfter',
+      content: `endAfter()`,
+    },
+  ]
+
   result = Promise.resolve(null)
   loading = false
 
@@ -51,6 +86,11 @@ export class QueryBrowserComponent implements OnInit {
     this.result
       .catch(err => this.snackbar.open(err, 'OK', { duration: 5000 }))
       .then(() => this.loading = false)
+  }
+
+  addSnippet(snippet) {
+    this.options.query += `
+  ${snippet.content}`
   }
 
 }
