@@ -15,3 +15,10 @@ pre {
 .clickable {
   cursor: pointer;
 }
+
+.historyEntry > button {
+  visibility: hidden
+}
+.historyEntry:hover > button {
+  visibility: visible
+}

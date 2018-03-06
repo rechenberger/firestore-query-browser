@@ -24,7 +24,7 @@
       History
       <ul>
         <ng-container *ngFor="let entry of historyEntries | async">
-          <li class="flex-row">
+          <li class="flex-row historyEntry">
             <span class="flex-1 clickable" (click)="setHistoryEntry(entry)">Path: {{ entry.path}}
               <br> Query: {{ entry.query}} </span>
             <button mat-icon-button (click)="removeHistoryEntry(entry)">
