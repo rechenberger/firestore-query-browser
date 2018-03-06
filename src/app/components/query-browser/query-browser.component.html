@@ -2,13 +2,13 @@
   <h3>Browser</h3>
   <div class="flex-row">
     <mat-form-field class="flex-1">
-      <input matInput placeholder="path" [(ngModel)]="options.path" (keyup.enter)="fetchResults()">
+      <input class="path" matInput placeholder="path" [(ngModel)]="options.path" (keyup.enter)="fetchResults()">
     </mat-form-field>
   </div>
   <div class="flex-row">
     <mat-form-field class="flex-1">
-      <textarea matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="options.query" (keyup.control.enter)="fetchResults()"
-        (keyup.shift.enter)="fetchResults()"></textarea>
+      <textarea class="query" matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="options.query"
+        (keyup.control.enter)="fetchResults()" (keyup.shift.enter)="fetchResults()"></textarea>
     </mat-form-field>
   </div>
   <div class="flex-row">
