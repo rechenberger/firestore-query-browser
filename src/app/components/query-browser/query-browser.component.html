@@ -41,7 +41,7 @@
         <ul>
           <ng-container *ngFor="let entry of historyEntries | async">
             <li class="flex-row historyEntry">
-              <span class="flex-1 clickable" (click)="setHistoryEntry(entry)">Path: {{ entry.path}}
+              <span class="flex-1 clickable" (click)="setAndFetch(entry)">Path: {{ entry.path}}
                 <br> Query: {{ entry.query}} </span>
               <button mat-icon-button (click)="removeHistoryEntry(entry)">
                 <mat-icon aria-label="Delete">delete</mat-icon>
@@ -59,7 +59,7 @@
         Examples
         <ul>
           <ng-container *ngFor="let queryExample of queryExamples">
-            <li (click)="query = queryExample.query" class="clickable">{{queryExample.query}}</li>
+            <li (click)="setAndFetch(queryExample)" class="clickable">{{queryExample.query}}</li>
           </ng-container>
         </ul>
       </div>
