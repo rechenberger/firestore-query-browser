@@ -7,7 +7,8 @@
   </div>
   <div class="flex-row">
     <mat-form-field class="flex-1">
-      <input matInput placeholder="query" [(ngModel)]="options.query" (keyup.enter)="fetchResults()">
+      <textarea matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="options.query" (keyup.control.enter)="fetchResults()"
+        (keyup.shift.enter)="fetchResults()"></textarea>
     </mat-form-field>
   </div>
   <div class="flex-row">
