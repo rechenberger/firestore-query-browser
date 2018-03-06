@@ -2,8 +2,13 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~firebaseui/dist/firebaseui.css";
 
+html, body {
+  background: #c9d6e8;
+}
+
 body {
-  background: #efefef;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ecf0f6 0%,#c9d6e8 100%);
   font-family: 'Roboto', sans-serif;
   padding: 0;
   margin: 0;
