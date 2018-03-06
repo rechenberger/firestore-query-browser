@@ -11,10 +11,6 @@ import * as _ from 'lodash'
 })
 export class QueryBrowserComponent implements OnInit {
 
-  // options = {
-  //   path: 'mandants',
-  //   query: `ref`
-  // }
   path = 'mandants'
   query = 'ref'
 
@@ -72,7 +68,7 @@ export class QueryBrowserComponent implements OnInit {
     },
   ]
 
-  historyEntries = this.storage.watch('history', [])
+  historyEntries = this.storage.watch<{}[]>('history', [])
 
   result = Promise.resolve(null)
   loading = false
@@ -103,9 +99,8 @@ export class QueryBrowserComponent implements OnInit {
       this.historyEntries
         .take(1)
         .do(entries => {
-          const found = !!_.find(entries, entry => entry.path === this.path && entry.query === this.query)
-          if (found) return
-          this.storage.set('history', [...entries, { path: this.path, query: this.query }])
+          const newEntries = _.filter(entries, entry => !(entry.path === this.path && entry.query === this.query))
+          this.storage.set('history', [{ path: this.path, query: this.query }, ...newEntries])
         })
         .subscribe(() => null)
     }
