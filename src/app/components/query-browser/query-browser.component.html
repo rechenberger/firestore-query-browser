@@ -21,7 +21,10 @@
   </div>
   <div class="flex-row" *ngIf="(historyEntries | async).length">
     <div class="flex-1">
-      History
+      <div class="flex-row">
+        <span>History</span>
+        <button mat-button (click)="removeAllHistoryEntries()">Delete all</button>
+      </div>
       <ul>
         <ng-container *ngFor="let entry of historyEntries | async">
           <li class="flex-row historyEntry">

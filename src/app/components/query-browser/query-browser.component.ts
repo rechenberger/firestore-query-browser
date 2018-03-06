@@ -126,4 +126,8 @@ export class QueryBrowserComponent implements OnInit {
       .subscribe(() => null)
   }
 
+  removeAllHistoryEntries() {
+    this.storage.set('history', [])
+  }
+
 }
