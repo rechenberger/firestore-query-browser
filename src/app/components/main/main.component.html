@@ -9,15 +9,19 @@
     <app-app-switcher class="flex-1"></app-app-switcher>
     <app-login style="margin-left: 16px" *ngIf="apps.activeProjectId"></app-login>
   </div>
+</div>
 
-  <ng-container *ngIf="apps.activeProjectId">
-    <app-query-browser></app-query-browser>
-  </ng-container>
-  <div class="footer flex-row">
-    <a href="https://github.com/rechenberger/firestore-query-browser/blob/master/LICENSE">MIT License</a>
-    <a href="https://github.com/rechenberger">&copy; 2018 Tristan Rechenberger</a>
-    <a href="https://github.com/rechenberger/firestore-query-browser">github</a>
+<div class="flex-row">
+  <div class="query-container">
+    <ng-container *ngIf="apps.activeProjectId">
+      <app-query-browser></app-query-browser>
+    </ng-container>
+    <div class="footer flex-row">
+      <a href="https://github.com/rechenberger/firestore-query-browser/blob/master/LICENSE">MIT License</a>
+      <a href="https://github.com/rechenberger">&copy; 2018 Tristan Rechenberger</a>
+      <a href="https://github.com/rechenberger/firestore-query-browser">github</a>
+    </div>
+    <p>
+    </p>
   </div>
-  <p>
-  </p>
 </div>

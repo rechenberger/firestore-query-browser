@@ -1,69 +1,74 @@
-<mat-card>
-  <h3>Browser</h3>
-  <div class="flex-row">
-    <mat-form-field class="flex-1">
-      <input class="path" matInput placeholder="path" [(ngModel)]="path" (keyup.enter)="fetchResults()">
-    </mat-form-field>
-  </div>
-  <div class="flex-row">
-    <mat-form-field class="flex-1">
-      <textarea class="query" matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="query" (keyup.control.enter)="fetchResults()"
-        (keyup.shift.enter)="fetchResults()"></textarea>
-    </mat-form-field>
-  </div>
+<div class="root">
 
-  <div class="flex-row fetch">
-    <div class="flex-1"></div>
-    <button mat-button color="primary" (click)="fetchResults()">FETCH</button>
-  </div>
-
-  <mat-divider></mat-divider>
-
-  <div class="flex-column option">
-    Add Snippet
-    <div class="flex-row flex-1">
-      <ng-container *ngFor="let snippet of snippets">
-        <button mat-button (click)="addSnippet(snippet)">{{snippet.name}}</button>
-      </ng-container>
+  <mat-card>
+    <h3>Browser</h3>
+    <div class="flex-row">
+      <mat-form-field class="flex-1">
+        <input class="path" matInput placeholder="path" [(ngModel)]="path" (keyup.enter)="fetchResults()">
+      </mat-form-field>
     </div>
-  </div>
+    <div class="flex-row">
+      <mat-form-field class="flex-1">
+        <textarea class="query" matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="query" (keyup.control.enter)="fetchResults()"
+          (keyup.shift.enter)="fetchResults()"></textarea>
+      </mat-form-field>
+    </div>
 
-  <mat-divider></mat-divider>
+    <div class="flex-row fetch">
+      <div class="flex-1"></div>
+      <button mat-button color="primary" (click)="fetchResults()">FETCH</button>
+    </div>
 
-  <div class="flex-row option" *ngIf="(historyEntries | async).length">
-    <div class="flex-1">
-      <div class="flex-row">
-        <span>History</span>
-        <button mat-button (click)="removeAllHistoryEntries()">Delete all</button>
+    <mat-divider></mat-divider>
+
+    <div class="flex-column option">
+      Add Snippet
+      <div class="flex-row flex-1">
+        <ng-container *ngFor="let snippet of snippets">
+          <button mat-button (click)="addSnippet(snippet)">{{snippet.name}}</button>
+        </ng-container>
       </div>
-      <ul>
-        <ng-container *ngFor="let entry of historyEntries | async">
-          <li class="flex-row historyEntry">
-            <span class="flex-1 clickable" (click)="setHistoryEntry(entry)">Path: {{ entry.path}}
-              <br> Query: {{ entry.query}} </span>
-            <button mat-icon-button (click)="removeHistoryEntry(entry)">
-              <mat-icon aria-label="Delete">delete</mat-icon>
-            </button>
-          </li>
-        </ng-container>
-      </ul>
     </div>
-  </div>
 
-  <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-  <div class="flex-row option">
-    <div class="flex-1">
-      Examples
-      <ul>
-        <ng-container *ngFor="let queryExample of queryExamples">
-          <li (click)="query = queryExample.query" class="clickable">{{queryExample.query}}</li>
-        </ng-container>
-      </ul>
+    <div class="flex-row option" *ngIf="(historyEntries | async).length">
+      <div class="flex-1">
+        <div class="flex-row">
+          <span>History</span>
+          <button mat-button (click)="removeAllHistoryEntries()">Delete all</button>
+        </div>
+        <ul>
+          <ng-container *ngFor="let entry of historyEntries | async">
+            <li class="flex-row historyEntry">
+              <span class="flex-1 clickable" (click)="setHistoryEntry(entry)">Path: {{ entry.path}}
+                <br> Query: {{ entry.query}} </span>
+              <button mat-icon-button (click)="removeHistoryEntry(entry)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
     </div>
-  </div>
-</mat-card>
-<mat-card>
-  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-  <pre>{{result | async | json}}</pre>
-</mat-card>
+
+    <mat-divider></mat-divider>
+
+    <div class="flex-row option">
+      <div class="flex-1">
+        Examples
+        <ul>
+          <ng-container *ngFor="let queryExample of queryExamples">
+            <li (click)="query = queryExample.query" class="clickable">{{queryExample.query}}</li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="results">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <pre>{{result | async | json}}</pre>
+  </mat-card>
+
+</div>

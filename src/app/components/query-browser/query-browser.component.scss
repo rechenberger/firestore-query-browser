@@ -1,3 +1,7 @@
+.root {
+  display: flex;
+}
+
 pre {
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
@@ -32,4 +36,8 @@ pre {
 
 .option {
   padding: 18px 0;
+}
+
+.results {
+  margin-left: 12px;
 }
