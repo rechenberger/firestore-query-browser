@@ -24,7 +24,13 @@
       History
       <ul>
         <ng-container *ngFor="let entry of historyEntries | async">
-          <li (click)="setEntry(entry)">{{entry.path}} {{ entry.query }}</li>
+          <li class="flex-row">
+            <span class="flex-1 clickable" (click)="setHistoryEntry(entry)">Path: {{ entry.path}}
+              <br> Query: {{ entry.query}} </span>
+            <button mat-icon-button (click)="removeHistoryEntry(entry)">
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </li>
         </ng-container>
       </ul>
     </div>
@@ -34,7 +40,7 @@
       Examples
       <ul>
         <ng-container *ngFor="let queryExample of queryExamples">
-          <li (click)="query = queryExample.query">{{queryExample.query}}</li>
+          <li (click)="query = queryExample.query" class="clickable">{{queryExample.query}}</li>
         </ng-container>
       </ul>
     </div>

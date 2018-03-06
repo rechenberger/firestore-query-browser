@@ -111,9 +111,19 @@ export class QueryBrowserComponent implements OnInit {
   ${snippet.content}`
   }
 
-  setEntry(entry) {
+  setHistoryEntry(entry) {
     this.path = entry.path
     this.query = entry.query
+  }
+
+  removeHistoryEntry(entry) {
+    this.historyEntries
+      .take(1)
+      .do(entries => {
+        const newEntries = _.filter(entries, e => !(e.path === entry.path && e.query === entry.query))
+        this.storage.set('history', newEntries)
+      })
+      .subscribe(() => null)
   }
 
 }
