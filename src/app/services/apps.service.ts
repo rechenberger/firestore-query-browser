@@ -31,7 +31,7 @@ export class AppsService {
   }
 
   newApp(config: any | string, store = true) {
-    console.log('config', config)
+    // console.log('config', config)
     if (typeof config == 'string') config = this.string2config(config)
     const projectId = config.projectId
     firebase.initializeApp(config, projectId)
