@@ -52,19 +52,19 @@ export class QueryBrowserComponent implements OnInit {
     },
     {
       name: 'startAt',
-      content: `startAt()`,
+      content: `.startAt()`,
     },
     {
       name: 'endAt',
-      content: `endAt()`,
+      content: `.endAt()`,
     },
     {
       name: 'startAfter',
-      content: `startAfter()`,
+      content: `.startAfter()`,
     },
     {
       name: 'endAfter',
-      content: `endAfter()`,
+      content: `.endAfter()`,
     },
   ]
 
