@@ -1,5 +1,6 @@
 .root {
   display: flex;
+  width: 1300px;
 }
 
 pre {
@@ -40,4 +41,14 @@ pre {
 
 .results {
   margin-left: 12px;
+}
+
+@media (max-width: 1300px) {
+  .root {
+    flex-direction: column;
+    width: 100%;
+  }
+  .results {
+    margin-left: 0;
+  }
 }

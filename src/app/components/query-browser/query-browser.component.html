@@ -66,8 +66,9 @@
     </div>
   </mat-card>
 
-  <mat-card class="results">
+  <mat-card class="results flex-1">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <h3>Result</h3>
     <pre>{{result | async | json}}</pre>
   </mat-card>
 
