@@ -1,0 +1,5 @@
+<ng-container *ngFor="let user of users | async">
+  <button mat-button (click)="authSwitcher.switchUser(user)">
+    {{ user.email }}
+  </button>
+</ng-container>

@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service'
 import { AppsService } from './../../services/apps.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   constructor(
-    public apps: AppsService
+    public apps: AppsService,
+    public auth: AuthService
   ) { }
 
   ngOnInit() {

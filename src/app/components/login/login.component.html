@@ -1,4 +1,5 @@
 <div class="firebaseui" [class.hidden]="isLoggedIn()"></div>
 <ng-container *ngIf="isLoggedIn()">
+  <app-auth-switcher></app-auth-switcher>
   <button mat-raised-button (click)="auth.logout()">LOGOUT</button>
 </ng-container>
