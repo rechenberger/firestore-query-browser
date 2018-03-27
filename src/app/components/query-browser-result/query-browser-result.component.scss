@@ -1,0 +1,20 @@
+.list {
+
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  margin: 0 -24px;
+  padding: 0 24px;
+  // cursor: pointer;
+  &:hover {
+    background: rgba(0,0,0,0.12)
+  }
+  &> :first-child {
+    flex: 1;
+  }
+  button {
+    margin-top: 16px;
+  }
+}
