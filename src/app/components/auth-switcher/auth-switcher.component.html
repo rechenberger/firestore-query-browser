@@ -1,5 +1,7 @@
-<ng-container *ngFor="let user of users | async">
-  <button mat-button (click)="authSwitcher.switchUser(user)">
-    {{ user.email }}
-  </button>
-</ng-container>
+<mat-radio-group [ngModel]="authSwitcher.currentUserData?.email" (ngModelChange)="switchUser($event)">
+  <ng-container *ngFor="let user of users | async">
+    <mat-radio-button [value]="user.email">
+      {{ user.email }}
+    </mat-radio-button>
+  </ng-container>
+</mat-radio-group>

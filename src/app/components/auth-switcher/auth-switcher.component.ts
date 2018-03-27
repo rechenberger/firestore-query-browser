@@ -16,7 +16,17 @@ export class AuthSwitcherComponent implements OnInit {
   users = this.authSwitcher.watchUsers()
     .map(users => _.map(users))
 
+  activeUser
+
   ngOnInit() {
+  }
+
+  switchUser(email) {
+    this.users
+      .take(1)
+      .map(users => _.find(users, user => user.email === email))
+      .do(user => this.authSwitcher.switchUser(user))
+      .subscribe()
   }
 
 }
