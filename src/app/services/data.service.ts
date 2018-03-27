@@ -26,10 +26,19 @@ export class DataService {
         : ref
 
       return query.get()
-        .then(snap => snap.docs.map(doc => doc.data()))
+        .then(snap => snap.docs.map(doc =>
+          ({
+            id: doc.id,
+            data: doc.data()
+          })
+        ))
     } else {
       return firestore.doc(options.path).get()
-        .then(snap => snap.data())
+        .then(snap =>
+          ({
+            id: snap.id,
+            data: snap.data()
+          }))
     }
   }
 

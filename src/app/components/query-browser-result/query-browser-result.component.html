@@ -1,0 +1,13 @@
+<ng-container *ngFor="let entity of entries">
+  <ng-container *ngIf="entity; else noEntity">
+    <pre>{{entity?.data | json}}</pre>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="!(entries?.length)">
+  <ng-container [ngTemplateOutlet]="noEntity"></ng-container>
+</ng-container>
+
+<ng-template #noEntity>
+  <pre>{{result | json}}</pre>
+</ng-template>

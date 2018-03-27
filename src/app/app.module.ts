@@ -26,7 +26,8 @@ import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/take'
 import 'rxjs/add/operator/map'
 
-import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.component'
+import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.component';
+import { QueryBrowserResultComponent } from './components/query-browser-result/query-browser-result.component'
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.
     AppSwitcherComponent,
     MainComponent,
     LoginComponent,
-    AuthSwitcherComponent
+    AuthSwitcherComponent,
+    QueryBrowserResultComponent
   ],
   imports: [
     BrowserModule,
