@@ -53,7 +53,7 @@ export class AuthSwitcherService {
 
   switchUser(user) {
     this.currentUserData = user
-    window.location.reload(true)
+    window.location.reload()
   }
 
 }
