@@ -2,6 +2,7 @@ import { AppsService } from './apps.service'
 import { Injectable } from '@angular/core'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
+import { MAT_DIALOG_SCROLL_STRATEGY } from '@angular/material';
 
 @Injectable()
 export class DataService {
@@ -12,34 +13,47 @@ export class DataService {
 
   }
 
-  async get(options) {
-    options = options || {}
+  private isCollection(path: string) {
+    return path.split('/').length % 2 === 1
+  }
+
+  private snapshotToData(snap) {
+    return {
+      id: snap.id,
+      data: snap.data()
+    }
+  }
+
+  async get(options: any = {}) {
     options.path = options.path || ''
-    const isCollection = (options.path.split('/').length % 2 == 1)
+    return this.ref(options)
+      .get()
+      .then(docs => this.isCollection(options.path)
+        ? docs.docs.map(this.snapshotToData)
+        : this.snapshotToData(docs)
+      )
+  }
+
+  ref(options: any = {}) {
+    options.path = options.path || ''
     const firestore = firebase.firestore(this.apps.activeApp)
 
-    if (isCollection) {
+    if (this.isCollection(options.path)) {
       let ref = firestore.collection(options.path)
 
       const query = options.query
         ? eval(options.query)
         : ref
 
-      return query.get()
-        .then(snap => snap.docs.map(doc =>
-          ({
-            id: doc.id,
-            data: doc.data()
-          })
-        ))
+      return query
     } else {
-      return firestore.doc(options.path).get()
-        .then(snap =>
-          ({
-            id: snap.id,
-            data: snap.data()
-          }))
+      return firestore.doc(options.path)
     }
+  }
+
+  async delete(options: any = {}) {
+    options = options || {}
+    options.path = options.path || ''
   }
 
 
