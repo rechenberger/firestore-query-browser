@@ -3,6 +3,7 @@ import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import * as _ from 'lodash'
+import { DeleteService } from '../../services/delete.service';
 
 @Component({
   selector: 'app-query-browser',
@@ -76,7 +77,8 @@ export class QueryBrowserComponent implements OnInit {
   constructor(
     private data: DataService,
     private snackbar: MatSnackBar,
-    private storage: StorageService
+    private storage: StorageService,
+    private deleteSrv: DeleteService
   ) { }
 
   ngOnInit() {
@@ -149,6 +151,13 @@ export class QueryBrowserComponent implements OnInit {
 
   removeAllHistoryEntries() {
     this.storage.set('history', [])
+  }
+
+  deleteResults() {
+    this.deleteSrv.openDialog({
+      path: this.path,
+      query: this.query
+    })
   }
 
 }

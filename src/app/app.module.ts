@@ -28,7 +28,9 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/filter'
 
 import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.component';
-import { QueryBrowserResultComponent } from './components/query-browser-result/query-browser-result.component'
+import { QueryBrowserResultComponent } from './components/query-browser-result/query-browser-result.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component'
+import { DeleteService } from './services/delete.service';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { QueryBrowserResultComponent } from './components/query-browser-result/q
     MainComponent,
     LoginComponent,
     AuthSwitcherComponent,
-    QueryBrowserResultComponent
+    QueryBrowserResultComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,8 +57,12 @@ import { QueryBrowserResultComponent } from './components/query-browser-result/q
     AppsService,
     AuthService,
     StorageService,
-    AuthSwitcherService
+    AuthSwitcherService,
+    DeleteService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DeleteDialogComponent
+  ]
 })
 export class AppModule { }

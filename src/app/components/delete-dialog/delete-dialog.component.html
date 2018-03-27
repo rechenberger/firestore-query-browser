@@ -1,0 +1,12 @@
+<div class="root">
+  <h2 mat-dialog-title>Delete</h2>
+  <mat-dialog-content>
+    <p>
+      Do you really want to delete {{(results | async)?.length}} entries?
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-raised-button color="warn" (click)="doIt()">DELETE</button>
+    <button mat-button (click)="answer(false)">Cancel</button>
+  </mat-dialog-actions>
+</div>
