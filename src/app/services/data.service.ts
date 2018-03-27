@@ -2,7 +2,10 @@ import { AppsService } from './apps.service'
 import { Injectable } from '@angular/core'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
-import { MAT_DIALOG_SCROLL_STRATEGY } from '@angular/material';
+import { MAT_DIALOG_SCROLL_STRATEGY } from '@angular/material'
+import * as _ from 'lodash'
+import { Observable } from '@firebase/util'
+import { Subject, BehaviorSubject } from 'rxjs'
 
 @Injectable()
 export class DataService {
@@ -20,7 +23,8 @@ export class DataService {
   private snapshotToData(snap) {
     return {
       id: snap.id,
-      data: snap.data()
+      data: snap.data(),
+      path: snap.ref.path
     }
   }
 
@@ -51,8 +55,43 @@ export class DataService {
   }
 
   async delete(options: any = {}) {
-    return this.ref(options)
-      .delete()
+    console.log('options', options)
+
+    return new Promise(res => {
+      const time = Math.random() * 4000 + 1000
+      setTimeout(() => {
+        res()
+      }, time)
+    })
+    // return this.ref(options)
+    //   .delete()
+  }
+
+
+  deletePaths(paths: string[]) {
+    const chunks = _.chunk(paths, 20)
+
+    const subject = new BehaviorSubject<number>(0)
+    let doneCount = 0
+
+    const doIt = async () => {
+      for (const chunk of chunks) {
+        await Promise.all(_.map(chunk, path =>
+          this.delete({
+            path
+          })
+            .then(() => {
+              doneCount++
+              subject.next(doneCount)
+            })
+        ))
+      }
+    }
+
+    doIt()
+      .then(() => subject.complete())
+
+    return subject.asObservable()
   }
 
 }

@@ -1,12 +1,30 @@
 <div class="root">
-  <h2 mat-dialog-title>Delete</h2>
+  <h2 mat-dialog-title>{{deleting?'Deleting':'Delete'}}</h2>
   <mat-dialog-content>
-    <p>
-      Do you really want to delete {{(results | async)?.length}} entries?
-    </p>
+    <ng-container *ngIf="deleting; else preDelete">
+      <div class="counter">
+        <span>{{(doneCount | async)}}</span>
+        <span>/</span>
+        <span>{{(results | async)?.length}}</span>
+      </div>
+      <mat-progress-bar mode="determinate" [value]="percentage | async"></mat-progress-bar>
+    </ng-container>
+    <ng-template #preDelete>
+      <ng-container *ngIf="(results | async)?.length as length">
+        <p>
+          Do you really want to delete
+          <strong>{{length}}</strong> {{length==1?'entry':'entries'}}?
+        </p>
+      </ng-container>
+    </ng-template>
   </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button mat-raised-button color="warn" (click)="doIt()">DELETE</button>
-    <button mat-button (click)="answer(false)">Cancel</button>
+  <mat-dialog-actions class="actions">
+    <ng-container *ngIf="deleting; else preDeleteActions">
+      <button mat-raised-button color="primary" (click)="answer(true)" [disabled]="!deleted">DONE</button>
+    </ng-container>
+    <ng-template #preDeleteActions>
+      <button mat-button mat-raised-button color="warn" (click)="doIt()">DELETE</button>
+      <button mat-button (click)="answer(false)">CANCEL</button>
+    </ng-template>
   </mat-dialog-actions>
 </div>

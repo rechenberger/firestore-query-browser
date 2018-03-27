@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  width: 600px;
+  max-width: calc(80vw - 100px);
+}
+
+.counter {
+  text-align: right;
+  color: rgba(0,0,0,0.58);
+  margin: 4px 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 16px;
+}
+
+mat-dialog-content {
+  height: 54px;
+}
