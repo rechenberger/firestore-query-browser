@@ -83,6 +83,16 @@ export class QueryBrowserComponent implements OnInit {
     this.fetchResults({
       addToHistory: false
     })
+    this.loadFirstHistoryEntry()
+  }
+
+  loadFirstHistoryEntry() {
+    this.historyEntries
+      .take(1)
+      .filter(entries => !!entries && !!entries.length)
+      .map(entries => entries[0])
+      .do(entry => this.setAndFetch(entry))
+      .subscribe(() => null)
   }
 
   fetchResults(options = { addToHistory: true }) {

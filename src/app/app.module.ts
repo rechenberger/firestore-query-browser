@@ -25,6 +25,7 @@ import { AuthSwitcherService } from './services/auth-switcher.service'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/take'
 import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/filter'
 
 import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.component';
 import { QueryBrowserResultComponent } from './components/query-browser-result/query-browser-result.component'
