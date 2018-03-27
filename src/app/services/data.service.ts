@@ -13,7 +13,7 @@ export class DataService {
 
   }
 
-  private isCollection(path: string) {
+  private isCollection(path: string = '') {
     return path.split('/').length % 2 === 1
   }
 
@@ -25,7 +25,6 @@ export class DataService {
   }
 
   async get(options: any = {}) {
-    options.path = options.path || ''
     return this.ref(options)
       .get()
       .then(docs => this.isCollection(options.path)
@@ -52,8 +51,8 @@ export class DataService {
   }
 
   async delete(options: any = {}) {
-    options = options || {}
-    options.path = options.path || ''
+    return this.ref(options)
+      .delete()
   }
 
 
