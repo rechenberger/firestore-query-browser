@@ -55,16 +55,8 @@ export class DataService {
   }
 
   async delete(options: any = {}) {
-    console.log('options', options)
-
-    return new Promise(res => {
-      const time = Math.random() * 4000 + 1000
-      setTimeout(() => {
-        res()
-      }, time)
-    })
-    // return this.ref(options)
-    //   .delete()
+    return this.ref(options)
+      .delete()
   }
 
 
