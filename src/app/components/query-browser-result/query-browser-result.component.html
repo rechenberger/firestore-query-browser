@@ -1,9 +1,12 @@
 <div class="list">
-
+  <div class="flex-row">
+    <h3>Result</h3>
+    <span>{{entries?.length || 0}} entries found</span>
+  </div>
   <ng-container *ngFor="let entity of entries">
     <ng-container *ngIf="entity; else noEntity">
       <div class="item">
-        <pre>{{entity?.data | json}}</pre>
+        <pre>{{entity?.data || null | json}}</pre>
         <button mat-icon-button [matMenuTriggerFor]="menu" #trigger="matMenuTrigger">
           <mat-icon>more_vert</mat-icon>
         </button>

@@ -69,7 +69,6 @@
 
   <mat-card class="results flex-1">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-    <h3>Result</h3>
     <app-query-browser-result [result]="result | async" [path]="path"></app-query-browser-result>
   </mat-card>
 
