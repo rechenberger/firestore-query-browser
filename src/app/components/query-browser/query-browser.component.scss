@@ -1,6 +1,7 @@
 .root {
   display: flex;
   width: 1300px;
+  align-items: flex-start;
 }
 
 pre {
@@ -47,8 +48,22 @@ pre {
   .root {
     flex-direction: column;
     width: 100%;
+    align-items: stretch;
   }
   .results {
     margin-left: 0;
+  }
+}
+
+.queryText {
+  max-width: calc(100vw - 140px);
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.historyEntries {
+  @media (max-width: 1000px) {
+    max-height: calc(100vh - 140px);
+    overflow-y: scroll;
   }
 }

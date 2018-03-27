@@ -24,7 +24,7 @@
 
     <div class="flex-column option">
       Add Snippet
-      <div class="flex-row flex-1">
+      <div class="flex-row flex-1" style="flex-wrap: wrap;">
         <ng-container *ngFor="let snippet of snippets">
           <button mat-button (click)="addSnippet(snippet)">{{snippet.name}}</button>
         </ng-container>
@@ -39,10 +39,10 @@
           <span>History</span>
           <button mat-button (click)="removeAllHistoryEntries()">Delete all</button>
         </div>
-        <ul>
+        <ul class="historyEntries">
           <ng-container *ngFor="let entry of historyEntries | async">
             <li class="flex-row historyEntry">
-              <span class="flex-1 clickable" (click)="setAndFetch(entry)">Path: {{ entry.path}}
+              <span class="flex-1 clickable queryText" (click)="setAndFetch(entry)">Path: {{ entry.path}}
                 <br> Query: {{ entry.query}} </span>
               <button mat-icon-button (click)="removeHistoryEntry(entry)">
                 <mat-icon aria-label="Delete">delete</mat-icon>

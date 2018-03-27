@@ -5,9 +5,9 @@
       <i class="fa fab fa-github"></i>
     </a>
   </div>
-  <div class="flex-row" style="align-items: flex-start">
+  <div class="flex-row top-row">
     <app-app-switcher class="flex-1"></app-app-switcher>
-    <app-login style="margin-left: 16px" *ngIf="apps.activeProjectId" class="flex-1"></app-login>
+    <app-login *ngIf="apps.activeProjectId" class="flex-1"></app-login>
   </div>
 </div>
 
