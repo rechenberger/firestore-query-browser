@@ -6,6 +6,7 @@ import { MAT_DIALOG_SCROLL_STRATEGY } from '@angular/material'
 import * as _ from 'lodash'
 import { Observable } from '@firebase/util'
 import { Subject, BehaviorSubject } from 'rxjs'
+import { AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Injectable()
 export class DataService {
@@ -84,6 +85,43 @@ export class DataService {
       .then(() => subject.complete())
 
     return subject.asObservable()
+  }
+
+  edit(path: string, doc: any) {
+    return new Promise(res => {
+      setTimeout(() => {
+        res()
+      }, (1 + Math.random()) * 1000)
+    })
+    // const firestore = firebase.firestore(this.apps.activeApp)
+    // const ref = firestore.doc(path)
+    // console.log('ref', ref)
+    // return ref.update(doc)
+  }
+
+  editMultiple(paths: string[], doc: any) {
+    const chunks = _.chunk(paths, 20)
+
+    const subject = new BehaviorSubject<number>(0)
+    let doneCount = 0
+
+    const doIt = async () => {
+      for (const chunk of chunks) {
+        await Promise.all(_.map(chunk, path =>
+          this.edit(path, doc)
+            .then(() => {
+              doneCount++
+              subject.next(doneCount)
+            })
+        ))
+      }
+    }
+
+    doIt()
+      .then(() => subject.complete())
+
+    return subject.asObservable()
+
   }
 
 }

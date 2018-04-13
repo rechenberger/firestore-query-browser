@@ -5,7 +5,8 @@ import * as _ from 'lodash'
 import { Observable } from 'rxjs'
 
 export interface EditDialogOptions {
-  ids: string[]
+  paths: string[]
+  template?: any
 }
 
 @Component({
@@ -26,8 +27,39 @@ export class EditDialogComponent implements OnInit {
 }`
 
   loading = false
+  done = false
+
+  doneCount
+  percentage
 
   ngOnInit() {
+    if (this.options.template) {
+      this.newEntity = JSON.stringify(this.options.template, null, '  ')
+    }
+  }
+
+  doIt() {
+    try {
+      const newEntity = JSON.parse(this.newEntity)
+    } catch (error) {
+      console.log(error)
+      // Show Snackbar
+      return
+    }
+
+    this.loading = true
+
+    this.doneCount = this.data.editMultiple(this.options.paths, this.newEntity)
+      .publishReplay(1)
+      .refCount()
+
+    this.percentage = Observable.combineLatest([this.doneCount])
+      .map(([done]) => Math.floor(100 * done / this.options.paths.length))
+
+    this.doneCount
+      .takeLast(1)
+      .do(() => this.done = true)
+      .subscribe(() => null)
   }
 
   answer(value) {

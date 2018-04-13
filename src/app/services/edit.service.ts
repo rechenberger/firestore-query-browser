@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.component'
+import { EditDialogComponent, EditDialogOptions } from '../components/edit-dialog/edit-dialog.component'
 import { MatDialog } from '@angular/material'
 
 
@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material'
 @Injectable()
 export class EditService {
 
-  openDialog(options: any = {}) {
+  openDialog(options: EditDialogOptions) {
     return this.dialog.open(EditDialogComponent, { data: options })
       .afterClosed()
   }

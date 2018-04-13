@@ -54,7 +54,8 @@ export class QueryBrowserResultComponent implements OnChanges {
 
   edit(entity) {
     this.editSrv.openDialog({
-      ids: [entity.id]
+      paths: [entity.path],
+      template: entity.data
     })
   }
 
