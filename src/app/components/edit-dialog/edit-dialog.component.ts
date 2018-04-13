@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core'
 import { DataService } from '../../services/data.service'
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material'
 import * as _ from 'lodash'
 import { Observable } from 'rxjs'
 
@@ -19,7 +19,8 @@ export class EditDialogComponent implements OnInit {
   constructor(
     private data: DataService,
     public dialogRef: MatDialogRef<EditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public options: EditDialogOptions
+    @Inject(MAT_DIALOG_DATA) public options: EditDialogOptions,
+    private snackbar: MatSnackBar
   ) { }
 
   newEntity = `{
@@ -42,8 +43,7 @@ export class EditDialogComponent implements OnInit {
     try {
       const newEntity = JSON.parse(this.newEntity)
     } catch (error) {
-      console.log(error)
-      // Show Snackbar
+      this.snackbar.open(error.toString(), 'OK', { duration: 4000 })
       return
     }
 
