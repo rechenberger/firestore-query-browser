@@ -96,6 +96,8 @@ export class DataService {
     // const firestore = firebase.firestore(this.apps.activeApp)
     // const ref = firestore.doc(path)
     // console.log('ref', ref)
+
+    // TODO: find out why this does not work
     // return ref.update(doc)
   }
 
