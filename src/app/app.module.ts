@@ -31,6 +31,8 @@ import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.
 import { QueryBrowserResultComponent } from './components/query-browser-result/query-browser-result.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component'
 import { DeleteService } from './services/delete.service';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import { EditService } from './services/edit.service';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { DeleteService } from './services/delete.service';
     LoginComponent,
     AuthSwitcherComponent,
     QueryBrowserResultComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,11 +61,13 @@ import { DeleteService } from './services/delete.service';
     AuthService,
     StorageService,
     AuthSwitcherService,
-    DeleteService
+    DeleteService,
+    EditService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    EditDialogComponent
   ]
 })
 export class AppModule { }

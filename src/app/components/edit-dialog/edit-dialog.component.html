@@ -1,0 +1,33 @@
+<div class="root">
+  <h2 mat-dialog-title>
+    Editing
+    <strong>{{options.ids.length}}</strong>
+    {{options.ids.length==1?'entry':'entries'}}
+  </h2>
+  <mat-dialog-content>
+    <ng-container *ngIf="loading; else preLoading">
+      <div class="counter">
+        <span>{{(doneCount | async)}}</span>
+        <span>/</span>
+        <span>{{(results | async)?.length}}</span>
+      </div>
+      <mat-progress-bar mode="determinate" [value]="percentage | async"></mat-progress-bar>
+    </ng-container>
+    <ng-template #preLoading>
+
+      <mat-form-field class="flex-1">
+        <textarea class="query" matInput placeholder="Update Object" [(ngModel)]="newEntity" (keyup.control.enter)="answer(true)"
+          (keyup.shift.enter)="answer(true)"></textarea>
+      </mat-form-field>
+    </ng-template>
+  </mat-dialog-content>
+  <mat-dialog-actions class="actions">
+    <ng-container *ngIf="loading; else preLoadingActions">
+      <button mat-raised-button color="primary" (click)="answer(true)" [disabled]="!deleted">DONE</button>
+    </ng-container>
+    <ng-template #preLoadingActions>
+      <button mat-button mat-raised-button color="primary" (click)="doIt()">EDIT</button>
+      <button mat-button (click)="answer(false)">CANCEL</button>
+    </ng-template>
+  </mat-dialog-actions>
+</div>
