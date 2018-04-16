@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+
+.header {
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-cell, mat-header-cell {
+  // max-height: 3em;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  padding: 4px;
+  // word-break: normal !important;
+}
+
+mat-cell, mat-header-cell {
+  min-width: 100px;
+}
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+  display: flex;
+  mat-table {
+    flex: 1
+  }
+}
+
+.actions {
+  position: absolute;
+  right: 0;
+  background: white;
+  min-width: 40px !important;
+  flex: 0;
+}

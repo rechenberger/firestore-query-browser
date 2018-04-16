@@ -28,3 +28,10 @@ pre {
     margin-top: 16px;
   }
 }
+
+app-result-table {
+  margin: 0 -24px;
+  @media (max-width: 600px) {
+    margin: 0 -16px;
+  }
+}
