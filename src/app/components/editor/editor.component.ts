@@ -19,8 +19,7 @@ export class EditorComponent implements OnInit {
 
   }
 
-  add(text: string) {
-    const pos = this.getCursorPos()
+  add(text: string, pos = this.getCursorPos()) {
     let val = this.query
     const splitVal = val.split('')
     if (pos >= splitVal.length) {
@@ -32,11 +31,9 @@ export class EditorComponent implements OnInit {
     this.query = val
     this.editor.nativeElement.focus()
 
-    setTimeout(() => {
-      if (this.snippetInQuery) return this.selectNextSnippet(pos)
-      const newCursorPos = pos + text.length
-      this.setCursorPos(newCursorPos)
-    }, 0)
+    if (this.snippetInQuery) return this.selectNextSnippet(pos)
+    const newCursorPos = pos + text.length
+    this.setCursorPos(newCursorPos)
   }
 
   indentedAdd(text) {
@@ -52,8 +49,27 @@ export class EditorComponent implements OnInit {
     this.add('  ')
   }
 
+  toggleComment() {
+    const pos = this.getCursorPos()
+    const text: string = this.query.substr(0, pos)
+    const posAfterNewLine = text.lastIndexOf('\n') + 1
+    if (this.query.substr(posAfterNewLine, 2) === '//') {
+      this.query = this.query.substr(0, posAfterNewLine) + this.query.substr(posAfterNewLine + 2)
+      this.setCursorPos(pos)
+      return
+    }
+    this.add('//', posAfterNewLine)
+  }
+
   protected getCursorPos() {
     return this.editor.nativeElement.selectionStart
+  }
+
+  protected setCursorPos(pos) {
+    setTimeout(() => {
+      this.editor.nativeElement.selectionStart = pos
+      this.editor.nativeElement.selectionEnd = pos
+    }, 0)
   }
 
   protected snippetInQuery() {
@@ -68,7 +84,6 @@ export class EditorComponent implements OnInit {
   protected getNextSnippetPos(pos = this.getCursorPos()) {
     const upcomingText = this.query.substr(pos)
     const found = upcomingText.match(this.snippetRegex)
-    console.log('pos', pos)
     if (!found) return pos === 0 ? null : this.getNextSnippetPos(0)
     return {
       start: pos + found.index,
@@ -81,10 +96,5 @@ export class EditorComponent implements OnInit {
     const { start, end } = pos
     this.editor.nativeElement.selectionStart = start
     this.editor.nativeElement.selectionEnd = end
-  }
-
-  protected setCursorPos(pos) {
-    this.editor.nativeElement.selectionStart = pos
-    this.editor.nativeElement.selectionEnd = pos
   }
 }

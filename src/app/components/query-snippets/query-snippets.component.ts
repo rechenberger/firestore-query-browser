@@ -23,6 +23,10 @@ export class QuerySnippetsComponent implements OnInit {
       content: `.orderBy('#{prop}', '#{direction}')`,
     },
     {
+      name: '//',
+      content: `__toggleComment__`,
+    },
+    {
       name: 'startAt',
       content: `.startAt(#{pos})`,
       more: true
