@@ -40,6 +40,7 @@ import { QueryInputComponent } from './components/query-input/query-input.compon
 import { QuerySnippetsComponent } from './components/query-snippets/query-snippets.component';
 import { QueryHistoryComponent } from './components/query-history/query-history.component';
 import { QueryActionsComponent } from './components/query-actions/query-actions.component'
+import { UtilService } from './services/util.service';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { QueryActionsComponent } from './components/query-actions/query-actions.
     StorageService,
     AuthSwitcherService,
     DialogService,
-    HistoryService
+    HistoryService,
+    UtilService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
