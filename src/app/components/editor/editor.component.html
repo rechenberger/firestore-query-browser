@@ -1,6 +1,4 @@
-<mat-form-field class="flex-1" style="width: 100%">
+<mat-form-field class="flex-1">
   <textarea #editor class="query" matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="query"
-    (keydown.Tab)="tab($event)"></textarea>
+    (keydown.Tab)="tab($event)" (ngModelChange)="queryChange.emit($event)"></textarea>
 </mat-form-field>
-
-<button mat-button (click)="indentedAdd('.where(#{1})')">.where()</button>

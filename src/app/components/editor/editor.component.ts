@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core'
 
 @Component({
   selector: 'app-editor',
@@ -11,8 +11,8 @@ export class EditorComponent implements OnInit {
 
   @ViewChild('editor') editor: ElementRef
 
-  query = `ref
-  `
+  @Input() query
+  @Output() queryChange = new EventEmitter()
   snippetRegex = /#\{([^#.]*)\}/
 
   ngOnInit() {
