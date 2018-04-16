@@ -18,7 +18,10 @@
     </button>
   </ng-container>
 
-  <mat-divider></mat-divider>
+  <ng-container *ngIf="(users | async)?.length">
+    <mat-divider></mat-divider>
+  </ng-container>
+
   <ng-container *ngIf="isLoggedIn(); else loginTemplate">
     <button mat-menu-item (click)="auth.logout()">
       <mat-icon>exit_to_app</mat-icon>
