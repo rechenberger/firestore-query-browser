@@ -153,11 +153,21 @@ export class QueryBrowserComponent implements OnInit {
     this.storage.set('history', [])
   }
 
-  deleteResults() {
-    this.dialog.delete({
+  async deleteResults() {
+    await this.dialog.delete({
       path: this.path,
       query: this.query
     })
+
+    this.fetchResults()
+  }
+
+  async create() {
+    await this.dialog.create({
+      path: this.path
+    })
+
+    this.fetchResults()
   }
 
   async editResults() {
