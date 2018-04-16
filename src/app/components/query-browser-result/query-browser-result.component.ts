@@ -2,6 +2,7 @@ import { Component, OnChanges, Input } from '@angular/core'
 import { AppsService } from '../../services/apps.service'
 import { DataService } from '../../services/data.service'
 import { DialogService } from '../../services/dialog.service'
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'app-query-browser-result',
@@ -19,7 +20,8 @@ export class QueryBrowserResultComponent implements OnChanges {
   constructor(
     private apps: AppsService,
     private data: DataService,
-    private dialog: DialogService
+    private dialog: DialogService,
+    private util: UtilService
   ) { }
 
   ngOnChanges(changes) {
@@ -29,34 +31,6 @@ export class QueryBrowserResultComponent implements OnChanges {
         ? this.result
         : [this.result]
     }
-  }
-
-  gotoConsole(entity) {
-    const relativeUrl = this.getPathParts(entity).join('~2F')
-    const url = `https://console.firebase.google.com/project/${this.apps.activeProjectId}/database/firestore/data~2F${relativeUrl}`
-    window.open(url)
-
-  }
-
-  private getPathParts(entity) {
-    const parts = this.path.split('/')
-    if (this.isCollection) {
-      parts.push(entity.id)
-    }
-    return parts
-  }
-
-  delete(entity) {
-    return this.data.delete({
-      path: this.getPathParts(entity).join('/')
-    })
-  }
-
-  edit(entity) {
-    this.dialog.edit({
-      paths: [entity.path],
-      template: entity.data
-    })
   }
 
 }

@@ -9,31 +9,8 @@ pre {
   font-size: 12px;
 }
 
-.query, .path {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
-}
-
-.query {
-  height: 130px;
-}
-
-.clickable {
-  cursor: pointer;
-}
-
 .fetch {
   margin-bottom: 18px;
-}
-
-.historyEntry {
-  margin-bottom: 8px;
-}
-.historyEntry > button {
-  visibility: hidden
-}
-.historyEntry:hover > button {
-  visibility: visible
 }
 
 .option {
@@ -55,15 +32,15 @@ pre {
   }
 }
 
-.queryText {
-  max-width: calc(100vw - 140px);
-  overflow: hidden;
-  word-wrap: break-word;
-}
-
-.historyEntries {
-  @media (max-width: 1000px) {
-    max-height: calc(100vh - 140px);
-    overflow-y: scroll;
+.top-row {
+  margin: -8px;
+  &>* {
+    margin: 8px !important;
+  }
+  align-items: stretch;
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
   }
 }

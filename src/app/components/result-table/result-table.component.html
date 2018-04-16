@@ -1,0 +1,37 @@
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container *ngFor="let key of keys">
+      <ng-container [matColumnDef]="key">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{key}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.data[key]}} </mat-cell>
+      </ng-container>
+    </ng-container>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="ID">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="$actions">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <app-entry-menu-button [entity]="row"></app-entry-menu-button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

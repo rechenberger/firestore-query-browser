@@ -1,0 +1,38 @@
+<div class="flex-row fetch" style="
+    flex-wrap: wrap;
+    justify-content: flex-end;
+">
+  <!-- <div class="flex-1"></div>
+  <button mat-icon-button (click)="create()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-icon-button (click)="editResults()">
+    <mat-icon>create</mat-icon>
+  </button>
+  <button mat-icon-button (click)="deleteResults()">
+    <mat-icon>delete</mat-icon>
+  </button> -->
+  <!-- <div class="flex-1"></div> -->
+  <button mat-button color="warn" (click)="deleteResults()">DELETE</button>
+  <button mat-button (click)="create()">CREATE</button>
+  <button mat-button (click)="editResults()">EDIT</button>
+  <button mat-button color="primary" (click)="fetch.emit()">FETCH</button>
+  <!-- <button mat-raised-button color="primary" class="more-btn" [matMenuTriggerFor]="menu">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button> -->
+</div>
+
+<!-- <mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="create()">
+    <mat-icon>add</mat-icon>
+    create
+  </button>
+  <button mat-menu-item (click)="editResults()">
+    <mat-icon>create</mat-icon>
+    edit
+  </button>
+  <button mat-menu-item color="warn" (click)="deleteResults()">
+    <mat-icon>delete</mat-icon>
+    delete
+  </button>
+</mat-menu> -->

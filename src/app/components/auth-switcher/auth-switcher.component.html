@@ -7,7 +7,9 @@
 </mat-radio-group> -->
 
 <button mat-button [matMenuTriggerFor]="menu">
-  {{authSwitcher.currentUserData?.email || 'Not Logged In'}}
+  <span class="short-on-mobile">
+    {{authSwitcher.currentUserData?.email || 'Not Logged In'}}
+  </span>
   <mat-icon>arrow_drop_down</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
@@ -18,7 +20,10 @@
     </button>
   </ng-container>
 
-  <mat-divider></mat-divider>
+  <ng-container *ngIf="(users | async)?.length">
+    <mat-divider></mat-divider>
+  </ng-container>
+
   <ng-container *ngIf="isLoggedIn(); else loginTemplate">
     <button mat-menu-item (click)="auth.logout()">
       <mat-icon>exit_to_app</mat-icon>

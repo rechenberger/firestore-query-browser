@@ -1,3 +1,10 @@
-<p>
-  add-app works!
-</p>
+<mat-card>
+  <h3>Add App</h3>
+
+  <mat-form-field>
+    <textarea matInput placeholder="config" [(ngModel)]="configString" matTextareaAutosize></textarea>
+  </mat-form-field>
+  <div>
+    <button mat-button color="primary" (click)="submitNew()">ADD APP</button>
+  </div>
+</mat-card>

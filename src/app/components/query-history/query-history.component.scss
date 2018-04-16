@@ -1,0 +1,32 @@
+:host {
+  font-size: 12px;
+}
+
+.historyEntry {
+  margin-bottom: 8px;
+}
+.historyEntry > button {
+  visibility: hidden
+}
+.historyEntry:hover > button {
+  visibility: visible
+}
+
+.queryText {
+  max-width: calc(100vw - 140px);
+  overflow: hidden;
+  word-wrap: break-word;
+  .query {
+    color: rgba(0,0,0,0.48)
+  }
+}
+
+.historyEntries {
+    // max-height: calc(100vh - 140px);
+    max-height: calc(277px - 2 * 24px);
+    overflow-y: scroll;
+}
+
+.clickable {
+  cursor: pointer;
+}

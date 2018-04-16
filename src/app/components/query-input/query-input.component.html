@@ -1,0 +1,11 @@
+<div class="flex-row">
+  <mat-form-field class="flex-1">
+    <input class="path" matInput placeholder="path" [ngModel]="path" (ngModelChange)="pathChange.emit($event)" (keyup.enter)="fetchResults()">
+  </mat-form-field>
+</div>
+<div class="flex-row">
+  <mat-form-field class="flex-1">
+    <textarea class="query" matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [ngModel]="query" (ngModelChange)="queryChange.emit($event)"
+      (keyup.control.enter)="fetch.emit()" (keyup.shift.enter)="fetch.emit()"></textarea>
+  </mat-form-field>
+</div>
