@@ -12,7 +12,7 @@ import { DialogService } from '../../services/dialog.service'
 })
 export class QueryBrowserComponent implements OnInit {
 
-  path = 'mandants'
+  path = 'dinosaurs'
   query = 'ref'
 
   queryExamples = [
