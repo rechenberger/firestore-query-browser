@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core'
 import { StorageService } from '../../services/storage.service'
 import * as _ from 'lodash'
 import { DialogService } from '../../services/dialog.service'
+import { AppsService } from '../../services/apps.service';
+import { HistoryService } from '../../services/history.service'
 
 @Component({
   selector: 'app-query-browser',
@@ -11,6 +13,13 @@ import { DialogService } from '../../services/dialog.service'
   styleUrls: ['./query-browser.component.scss']
 })
 export class QueryBrowserComponent implements OnInit {
+  constructor(
+    private data: DataService,
+    private snackbar: MatSnackBar,
+    private storage: StorageService,
+    private dialog: DialogService,
+    public historySrv: HistoryService
+  ) { }
 
   path = 'dinosaurs'
   query = 'ref'
@@ -69,17 +78,10 @@ export class QueryBrowserComponent implements OnInit {
     },
   ]
 
-  historyEntries = this.storage.watch<{}[]>('history', [])
+  historyEntries = this.historySrv.getHistory()
 
   result = Promise.resolve(null)
   loading = false
-
-  constructor(
-    private data: DataService,
-    private snackbar: MatSnackBar,
-    private storage: StorageService,
-    private dialog: DialogService
-  ) { }
 
   ngOnInit() {
     this.fetchResults({
@@ -104,17 +106,13 @@ export class QueryBrowserComponent implements OnInit {
       path: this.path,
       query: this.query
     })
+
     this.result
       .catch(err => this.snackbar.open(err, 'OK', { duration: 5000 }))
       .then(() => this.loading = false)
+
     if (addToHistory) {
-      this.historyEntries
-        .take(1)
-        .do(entries => {
-          const newEntries = _.filter(entries, entry => !(entry.path === this.path && entry.query === this.query))
-          this.storage.set('history', [{ path: this.path, query: this.query }, ...newEntries])
-        })
-        .subscribe(() => null)
+      this.historySrv.addEntry({ path: this.path, query: this.query })
     }
   }
 
@@ -122,12 +120,6 @@ export class QueryBrowserComponent implements OnInit {
     this.query += `
   ${snippet.content}`
   }
-
-  // setHistoryEntry(entry) {
-  //   this.path = entry.path
-  //   this.query = entry.query
-  //   this.fetchResults()
-  // }
 
   setAndFetch(entry) {
     if (entry.path) {
@@ -137,20 +129,6 @@ export class QueryBrowserComponent implements OnInit {
       this.query = entry.query
     }
     this.fetchResults()
-  }
-
-  removeHistoryEntry(entry) {
-    this.historyEntries
-      .take(1)
-      .do(entries => {
-        const newEntries = _.filter(entries, e => !(e.path === entry.path && e.query === entry.query))
-        this.storage.set('history', newEntries)
-      })
-      .subscribe(() => null)
-  }
-
-  removeAllHistoryEntries() {
-    this.storage.set('history', [])
   }
 
   async deleteResults() {
