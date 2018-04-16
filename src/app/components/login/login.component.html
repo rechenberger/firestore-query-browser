@@ -1,8 +1,6 @@
-<mat-card>
-  <h3>User Switcher</h3>
-  <app-auth-switcher></app-auth-switcher>
-  <ng-container *ngIf="isLoggedIn()">
-    <button mat-button (click)="auth.logout()">LOGOUT</button>
-  </ng-container>
-</mat-card>
-<div class="firebaseui" [class.hidden]="isLoggedIn()"></div>
+<h2>Login</h2>
+<ng-container *ngIf="isLoggedIn()">
+  <button mat-raised-button (click)="auth.logout()">LOGOUT</button>
+</ng-container>
+<div class="firebaseui" [class.hidden]="isLoggedIn()">
+</div>

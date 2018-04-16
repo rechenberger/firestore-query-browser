@@ -1,16 +1,13 @@
 <app-toolbar></app-toolbar>
 
 <div class="main-container">
-  <div class="flex-row top-row">
-    <app-app-switcher class="flex-1"></app-app-switcher>
-    <app-login *ngIf="apps.activeProjectId" class="flex-1"></app-login>
-  </div>
+  <router-outlet></router-outlet>
 </div>
 
 <div class="flex-row">
   <div class="query-container">
     <ng-container *ngIf="apps.activeProjectId">
-      <app-query-browser></app-query-browser>
+      <!-- <app-query-browser></app-query-browser> -->
     </ng-container>
     <div class="footer flex-row">
       <a href="https://github.com/rechenberger/firestore-query-browser/blob/master/LICENSE">MIT License</a>
