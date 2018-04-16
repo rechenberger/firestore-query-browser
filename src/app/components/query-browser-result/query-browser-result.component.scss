@@ -1,3 +1,13 @@
+:host {
+  display: block;
+}
+
+pre {
+  max-width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .list {
 
 }
