@@ -33,6 +33,7 @@ import { QueryBrowserResultComponent } from './components/query-browser-result/q
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component'
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component'
 import { CreateDialogComponent } from './components/create-dialog/create-dialog.component'
+import { EditorComponent } from './components/editor/editor.component'
 import { DialogService } from './services/dialog.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AddAppComponent } from './components/add-app/add-app.component';
@@ -59,6 +60,7 @@ import { EntryMenuButtonComponent } from './components/entry-menu-button/entry-m
     CreateDialogComponent,
     ToolbarComponent,
     AddAppComponent,
+    EditorComponent,
     QueryInputComponent,
     QuerySnippetsComponent,
     QueryHistoryComponent,
@@ -72,7 +74,7 @@ import { EntryMenuButtonComponent } from './components/entry-menu-button/entry-m
     AngularFireModule,
     FormsModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     DataService,
