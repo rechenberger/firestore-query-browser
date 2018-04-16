@@ -2,13 +2,22 @@ import { Injectable } from '@angular/core'
 import * as firebase from 'firebase'
 import * as _ from 'lodash'
 import { ReplaySubject } from 'rxjs'
+import { StorageService } from './storage.service'
 
 @Injectable()
 export class AppsService {
+  constructor(
+    public storage: StorageService
+  ) {
+    this.loadApps()
+    this.activeProjectId = this.storage.get(this.activeProjectIdStorageKey)
+  }
 
   activeApp
   private _activeProjectId
   activeProjectIdChanged = new ReplaySubject(1)
+  activeProjectIdStorageKey = 'active-project-id'
+  appsStorageKey = 'apps'
 
   get activeProjectId() {
     return this._activeProjectId
@@ -17,14 +26,9 @@ export class AppsService {
     this._activeProjectId = activeProjectId
     this.activeProjectIdChanged.next(activeProjectId)
     if (this.activeProjectId) {
-      localStorage.setItem('fqb-activeProjectId', this.activeProjectId)
-      this.activeApp = _.find(firebase.apps, app => app.options.projectId == this.activeProjectId)
+      this.storage.set(this.activeProjectIdStorageKey, this.activeProjectId)
+      this.activeApp = _.find(firebase.apps, app => app.options.projectId === this.activeProjectId)
     }
-  }
-
-  constructor() {
-    this.loadApps()
-    this.activeProjectId = localStorage.getItem('fqb-activeProjectId')
   }
 
   string2config(configString: string): any {
@@ -35,7 +39,7 @@ export class AppsService {
 
   newApp(config: any | string, store = true) {
     // console.log('config', config)
-    if (typeof config == 'string') config = this.string2config(config)
+    if (typeof config === 'string') config = this.string2config(config)
     const projectId = config.projectId
     firebase.initializeApp(config, projectId)
     if (store) {
@@ -46,13 +50,11 @@ export class AppsService {
 
   storeApps() {
     const configs = firebase.apps.map(app => app.options)
-    const string = JSON.stringify(configs)
-    localStorage.setItem('fqb-apps', string)
+    this.storage.set(this.appsStorageKey, configs)
   }
 
   loadApps() {
-    const string = localStorage.getItem('fqb-apps')
-    const configs = JSON.parse(string)
+    const configs = this.storage.get<any>(this.appsStorageKey)
     if (!configs) return
     configs.forEach(config => {
       this.newApp(config, false)
