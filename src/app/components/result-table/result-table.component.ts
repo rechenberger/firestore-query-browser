@@ -1,5 +1,6 @@
 import { Component, OnChanges, Input, ViewChild, AfterViewInit } from '@angular/core'
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material'
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-result-table',
@@ -16,6 +17,7 @@ export class ResultTableComponent implements OnChanges, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
 
+  keys
 
   constructor() { }
 
@@ -23,7 +25,24 @@ export class ResultTableComponent implements OnChanges, AfterViewInit {
     if (changes.entries) {
       console.log('this.entries', this.entries)
       this.dataSource.data = this.entries
+      this.calcKeys()
     }
+  }
+
+  calcKeys() {
+    this.keys = _(this.entries)
+      .map(entry => _.keys(entry.data))
+      .flatten()
+      .uniq()
+      .value()
+
+    this.displayedColumns = [
+      'ID',
+      ...this.keys,
+      '$actions'
+    ]
+
+    console.log('this.keys', this.keys)
   }
 
   ngAfterViewInit() {
