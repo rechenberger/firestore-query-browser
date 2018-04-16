@@ -1,23 +1,17 @@
 <app-toolbar></app-toolbar>
 
 <div class="main-container">
-  <router-outlet></router-outlet>
-</div>
 
-<div class="flex-row">
-  <div class="query-container">
-    <ng-container *ngIf="apps.activeProjectId">
-      <!-- <app-query-browser></app-query-browser> -->
-    </ng-container>
-    <div class="footer flex-row">
-      <a href="https://github.com/rechenberger/firestore-query-browser/blob/master/LICENSE">MIT License</a>
-      <span>
-        <a href="https://github.com/rechenberger">&copy; 2018 Tristan Rechenberger</a>
-        <a href="https://github.com/sean-nicholas">& Sean Dieterle</a>
-      </span>
-      <a href="https://github.com/rechenberger/firestore-query-browser">github</a>
-    </div>
-    <p>
-    </p>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="footer flex-row">
+    <a href="https://github.com/rechenberger/firestore-query-browser/blob/master/LICENSE">MIT License</a>
+    <span>
+      <a href="https://github.com/rechenberger">&copy; 2018 Tristan Rechenberger</a>
+      <a href="https://github.com/sean-nicholas">& Sean Dieterle</a>
+    </span>
+    <a href="https://github.com/rechenberger/firestore-query-browser">github</a>
   </div>
 </div>
