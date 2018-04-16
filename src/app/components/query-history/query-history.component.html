@@ -1,19 +1,22 @@
 <div class="flex-row option" *ngIf="(historyEntries | async).length">
   <div class="flex-1">
-    <div class="flex-row">
+    <!-- <div class="flex-row">
       <span>History</span>
       <button mat-button (click)="historySrv.removeAllEntries()">Delete all</button>
-    </div>
-    <ul class="historyEntries">
+    </div> -->
+    <div class="historyEntries">
       <ng-container *ngFor="let entry of historyEntries | async">
-        <li class="flex-row historyEntry">
-          <span class="flex-1 clickable queryText" (click)="setAndFetch(entry)">Path: {{ entry.path}}
-            <br> Query: {{ entry.query}} </span>
+        <div class="flex-row historyEntry">
+          <span class="flex-1 clickable queryText" (click)="setAndFetch(entry)">
+            <span class="path">{{entry.path}}</span>
+            <br>
+            <span class="query">{{entry.query}}</span>
+          </span>
           <button mat-icon-button (click)="historySrv.removeEntry(entry)">
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
-        </li>
+        </div>
       </ng-container>
-    </ul>
+    </div>
   </div>
 </div>

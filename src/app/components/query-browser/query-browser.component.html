@@ -26,14 +26,14 @@
   </mat-card>
 </div> -->
 
-<div class="flex-row top-row">
-  <div class="flex-1">
+<div class="flex-row-responsive top-row">
+  <div class="flex-1" style="flex: 2">
     <mat-card>
       <app-query-input [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-input>
-      <app-query-snippets [(query)]="query"></app-query-snippets>
-    </mat-card>
-    <mat-card style="padding-top: 0; padding-bottom: 0; margin-top: 16px">
-      <app-query-actions [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-actions>
+      <div class="flex-row-responsive">
+        <app-query-snippets [(query)]="query"></app-query-snippets>
+        <app-query-actions [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-actions>
+      </div>
     </mat-card>
   </div>
   <mat-card class="flex-1">
@@ -41,6 +41,8 @@
     <app-query-history [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-history>
   </mat-card>
 </div>
+<!-- <mat-card style="padding-top: 0; padding-bottom: 0; margin-top: 16px">
+</mat-card> -->
 
 <mat-card style="margin-top: 16px;">
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
