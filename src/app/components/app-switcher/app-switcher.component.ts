@@ -30,6 +30,9 @@ export class AppSwitcherComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.appsService.activeProjectIdChanged
+      .do(() => this.reloadApps())
+      .subscribe(() => null)
   }
 
   submitNew() {

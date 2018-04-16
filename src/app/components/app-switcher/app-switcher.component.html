@@ -1,32 +1,5 @@
-<!-- <mat-card>
-  <h3>App Switchter</h3>
-
-  <mat-radio-group [(ngModel)]="appsService.activeProjectId">
-    <ng-container *ngFor="let app of apps">
-      <ng-container *ngIf="app.projectId">
-        <mat-radio-button [value]="app.projectId">
-          {{app.projectId}}
-        </mat-radio-button>
-      </ng-container>
-    </ng-container>
-  </mat-radio-group>
-
-  <ng-container *ngIf="(showNew || !appsService.activeProjectId); else newBtn">
-    <mat-form-field>
-      <textarea matInput placeholder="config" [(ngModel)]="configString" matTextareaAutosize></textarea>
-    </mat-form-field>
-    <div>
-      <button mat-button color="primary" (click)="submitNew()">ADD APP</button>
-      <button mat-button (click)="showNew = false" *ngIf="appsService.activeProjectId">CANCEL</button>
-    </div>
-  </ng-container>
-  <ng-template #newBtn>
-    <button mat-button (click)="showNew = true">ADD ANOTHER APP</button>
-  </ng-template>
-</mat-card> -->
-
 <button mat-button [matMenuTriggerFor]="menu">
-  {{appsService.activeProjectId}}
+  {{appsService.activeProjectId || 'No App selected'}}
   <mat-icon>arrow_drop_down</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
