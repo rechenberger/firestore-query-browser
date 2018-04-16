@@ -40,8 +40,9 @@ export class EditDialogComponent implements OnInit {
   }
 
   doIt() {
+    let newEntity
     try {
-      const newEntity = JSON.parse(this.newEntity)
+      newEntity = JSON.parse(this.newEntity)
     } catch (error) {
       this.snackbar.open(error.toString(), 'OK', { duration: 4000 })
       return
@@ -49,7 +50,7 @@ export class EditDialogComponent implements OnInit {
 
     this.loading = true
 
-    this.doneCount = this.data.editMultiple(this.options.paths, this.newEntity)
+    this.doneCount = this.data.editMultiple(this.options.paths, newEntity)
       .publishReplay(1)
       .refCount()
 

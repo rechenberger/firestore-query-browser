@@ -88,17 +88,9 @@ export class DataService {
   }
 
   edit(path: string, doc: any) {
-    return new Promise(res => {
-      setTimeout(() => {
-        res()
-      }, (1 + Math.random()) * 1000)
-    })
-    // const firestore = firebase.firestore(this.apps.activeApp)
-    // const ref = firestore.doc(path)
-    // console.log('ref', ref)
-
-    // TODO: find out why this does not work
-    // return ref.update(doc)
+    const firestore = firebase.firestore(this.apps.activeApp)
+    const ref = firestore.doc(path)
+    return ref.update(doc)
   }
 
   editMultiple(paths: string[], doc: any) {
