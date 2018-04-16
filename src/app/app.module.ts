@@ -33,9 +33,10 @@ import { QueryBrowserResultComponent } from './components/query-browser-result/q
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component'
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component'
 import { CreateDialogComponent } from './components/create-dialog/create-dialog.component'
-import { DialogService } from './services/dialog.service';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { DialogService } from './services/dialog.service'
+import { ToolbarComponent } from './components/toolbar/toolbar.component'
 import { AddAppComponent } from './components/add-app/add-app.component'
+import { EditorComponent } from './components/editor/editor.component'
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { AddAppComponent } from './components/add-app/add-app.component'
     EditDialogComponent,
     CreateDialogComponent,
     ToolbarComponent,
-    AddAppComponent
+    AddAppComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { AddAppComponent } from './components/add-app/add-app.component'
     AngularFireModule,
     FormsModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     DataService,
