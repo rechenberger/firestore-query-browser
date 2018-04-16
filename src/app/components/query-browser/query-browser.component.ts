@@ -1,12 +1,13 @@
 import { MatSnackBar } from '@angular/material'
 import { DataService } from './../../services/data.service'
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { StorageService } from '../../services/storage.service'
 import * as _ from 'lodash'
 import { DialogService } from '../../services/dialog.service'
 import { AppsService } from '../../services/apps.service'
 import { HistoryService } from '../../services/history.service'
 import { Router } from '@angular/router'
+import { EditorComponent } from '../editor/editor.component';
 
 @Component({
   selector: 'app-query-browser',
@@ -23,6 +24,8 @@ export class QueryBrowserComponent implements OnInit {
     private router: Router,
     private historySrv: HistoryService
   ) { }
+
+  @ViewChild('editor') editor: EditorComponent
 
   path = 'dinosaurs'
   query = 'ref'
@@ -56,6 +59,10 @@ export class QueryBrowserComponent implements OnInit {
     if (addToHistory) {
       this.historySrv.addEntry({ path: this.path, query: this.query })
     }
+  }
+
+  addSnippet(snippet) {
+    this.editor.indentedAdd(snippet)
   }
 
 }

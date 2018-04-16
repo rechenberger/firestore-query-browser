@@ -3,6 +3,3 @@
     <input class="path" matInput placeholder="path" [ngModel]="path" (ngModelChange)="pathChange.emit($event)" (keyup.enter)="fetch.emit()">
   </mat-form-field>
 </div>
-<div class="flex-row">
-  <app-editor [query]="query" (queryChange)="queryChange.emit($event)" (keyup.control.enter)="fetch.emit()" (keyup.shift.enter)="fetch.emit()"></app-editor>
-</div>

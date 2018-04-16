@@ -7,40 +7,39 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 })
 export class QuerySnippetsComponent implements OnInit {
 
-  @Input() query
-  @Output() queryChange = new EventEmitter()
+  @Output() addSnippet = new EventEmitter()
 
   snippets = [
     {
       name: 'where',
-      content: `.where('', '==', '')`,
+      content: `.where('#{prop}', '==', '#{val}')`,
     },
     {
       name: 'limit',
-      content: `.limit()`,
+      content: `.limit(#{limit})`,
     },
     {
       name: 'orderBy',
-      content: `.orderBy('', 'asc')`,
+      content: `.orderBy('#{prop}', '#{direction}')`,
     },
     {
       name: 'startAt',
-      content: `.startAt()`,
+      content: `.startAt(#{pos})`,
       more: true
     },
     {
       name: 'endAt',
-      content: `.endAt()`,
+      content: `.endAt(#{pos})`,
       more: true
     },
     {
       name: 'startAfter',
-      content: `.startAfter()`,
+      content: `.startAfter(#{pos})`,
       more: true
     },
     {
       name: 'endAfter',
-      content: `.endAfter()`,
+      content: `.endAfter(#{pos})`,
       more: true
     },
   ]
@@ -48,12 +47,6 @@ export class QuerySnippetsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  addSnippet(snippet) {
-    const query = this.query + `
-  ${snippet.content}`
-    this.queryChange.emit(query)
   }
 
 }
