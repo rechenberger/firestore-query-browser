@@ -3,7 +3,6 @@ import { DataService } from '../../services/data.service'
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material'
 import * as _ from 'lodash'
 import { Observable } from 'rxjs'
-import { create } from 'domain';
 
 export interface CreateDialogOptions {
   path: string
