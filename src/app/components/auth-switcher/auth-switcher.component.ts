@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { AuthSwitcherService } from '../../services/auth-switcher.service'
 import * as _ from 'lodash'
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth-switcher',
@@ -10,7 +11,8 @@ import * as _ from 'lodash'
 export class AuthSwitcherComponent implements OnInit {
 
   constructor(
-    public authSwitcher: AuthSwitcherService
+    public authSwitcher: AuthSwitcherService,
+    public auth: AuthService
   ) { }
 
   users = this.authSwitcher.watchUsers()
@@ -27,6 +29,11 @@ export class AuthSwitcherComponent implements OnInit {
       .map(users => _.find(users, user => user.email === email))
       .do(user => this.authSwitcher.switchUser(user))
       .subscribe()
+  }
+
+
+  isLoggedIn() {
+    return !!this.auth.currentUser
   }
 
 }
