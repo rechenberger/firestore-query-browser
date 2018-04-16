@@ -10,7 +10,9 @@
     <ng-container *ngFor="let key of keys">
       <ng-container [matColumnDef]="key">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{key}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row[key]}} </mat-cell>
+        <mat-cell *matCellDef="let row">
+          <pre>{{row[key] | json}}</pre>
+        </mat-cell>
       </ng-container>
     </ng-container>
 
