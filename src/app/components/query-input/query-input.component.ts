@@ -9,9 +9,9 @@ export class QueryInputComponent implements OnInit {
 
   @Input() path
   @Input() query
-
   @Output() pathChange = new EventEmitter()
   @Output() queryChange = new EventEmitter()
+  @Output() fetch = new EventEmitter()
 
   constructor() { }
 

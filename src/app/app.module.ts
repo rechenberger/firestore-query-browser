@@ -38,7 +38,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AddAppComponent } from './components/add-app/add-app.component';
 import { QueryInputComponent } from './components/query-input/query-input.component';
 import { QuerySnippetsComponent } from './components/query-snippets/query-snippets.component';
-import { QueryHistoryComponent } from './components/query-history/query-history.component'
+import { QueryHistoryComponent } from './components/query-history/query-history.component';
+import { QueryActionsComponent } from './components/query-actions/query-actions.component'
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { QueryHistoryComponent } from './components/query-history/query-history.
     AddAppComponent,
     QueryInputComponent,
     QuerySnippetsComponent,
-    QueryHistoryComponent
+    QueryHistoryComponent,
+    QueryActionsComponent
   ],
   imports: [
     BrowserModule,

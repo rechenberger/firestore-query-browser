@@ -22,7 +22,9 @@ export class QueryHistoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadFirstHistoryEntry()
+    setTimeout(() => {
+      this.loadFirstHistoryEntry()
+    }, 0)
   }
 
   loadFirstHistoryEntry() {
