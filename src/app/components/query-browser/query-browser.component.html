@@ -2,17 +2,7 @@
 
   <mat-card>
     <h3>Browser</h3>
-    <div class="flex-row">
-      <mat-form-field class="flex-1">
-        <input class="path" matInput placeholder="path" [(ngModel)]="path" (keyup.enter)="fetchResults()">
-      </mat-form-field>
-    </div>
-    <div class="flex-row">
-      <mat-form-field class="flex-1">
-        <textarea class="query" matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="query" (keyup.control.enter)="fetchResults()"
-          (keyup.shift.enter)="fetchResults()"></textarea>
-      </mat-form-field>
-    </div>
+    <app-query-input [(path)]="path" [(query)]="query"></app-query-input>
 
     <div class="flex-row fetch">
       <div class="flex-1"></div>
