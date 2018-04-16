@@ -1,4 +1,9 @@
-:host {
+:host, mat-form-field {
   width: 100%;
   display: block;
+}
+
+textarea {
+  height: 80px;
+  width: 100%;
 }
