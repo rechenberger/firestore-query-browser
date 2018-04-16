@@ -67,3 +67,12 @@ a {
     text-decoration: underline;
   }
 }
+
+@media (max-width: 600px) {
+  .short-on-mobile {
+    display: inline-block;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

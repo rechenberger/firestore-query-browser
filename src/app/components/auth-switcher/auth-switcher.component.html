@@ -7,7 +7,9 @@
 </mat-radio-group> -->
 
 <button mat-button [matMenuTriggerFor]="menu">
-  {{authSwitcher.currentUserData?.email || 'Not Logged In'}}
+  <span class="short-on-mobile">
+    {{authSwitcher.currentUserData?.email || 'Not Logged In'}}
+  </span>
   <mat-icon>arrow_drop_down</mat-icon>
 </button>
 <mat-menu #menu="matMenu">

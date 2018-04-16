@@ -1,5 +1,7 @@
 <button mat-button [matMenuTriggerFor]="menu">
-  {{appsService.activeProjectId || 'No App selected'}}
+  <span class="short-on-mobile">
+    {{appsService.activeProjectId || 'No App selected'}}
+  </span>
   <mat-icon>arrow_drop_down</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
