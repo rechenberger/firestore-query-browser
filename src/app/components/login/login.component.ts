@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const ui = new firebaseui.auth.AuthUI(this.auth.auth)
     // The start method will wait until the DOM is loaded.
     const uiConfig = {
-      signInSuccessUrl: '<url-to-redirect-to-on-success>',
+      signInSuccessUrl: '/',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
