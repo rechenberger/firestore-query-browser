@@ -33,21 +33,4 @@ export class QueryBrowserResultComponent implements OnChanges {
     }
   }
 
-  gotoConsole(entity) {
-    this.util.gotoConsole(entity)
-  }
-
-  delete(entity) {
-    return this.data.delete({
-      path: entity.path
-    })
-  }
-
-  edit(entity) {
-    this.dialog.edit({
-      paths: [entity.path],
-      template: entity.data
-    })
-  }
-
 }
