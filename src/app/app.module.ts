@@ -34,7 +34,8 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component'
 import { CreateDialogComponent } from './components/create-dialog/create-dialog.component'
 import { DialogService } from './services/dialog.service';
-import { ToolbarComponent } from './components/toolbar/toolbar.component'
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AddAppComponent } from './components/add-app/add-app.component'
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component'
     DeleteDialogComponent,
     EditDialogComponent,
     CreateDialogComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AddAppComponent
   ],
   imports: [
     BrowserModule,

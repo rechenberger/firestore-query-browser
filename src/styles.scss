@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  min-height: 100vh;
+  min-height: calc(100vh - 16px);
   background: linear-gradient(135deg, #ecf0f6 0%,#c9d6e8 100%);
   font-family: 'Roboto', sans-serif;
   padding: 0;
@@ -16,6 +16,7 @@ body {
 
 .main-container {
   width: 100%;
+  box-sizing: border-box;
   max-width: 1200px;
   margin: 0 auto;
   padding: 8px;

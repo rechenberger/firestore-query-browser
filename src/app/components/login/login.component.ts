@@ -1,31 +1,52 @@
 import { AuthService } from './../../services/auth.service'
-import { Component, OnInit, AfterViewInit } from '@angular/core'
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core'
 import * as firebaseui from 'firebaseui'
 import * as firebase from 'firebase'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
-    public auth: AuthService
+    public auth: AuthService,
+    private router: Router
   ) { }
 
+  checkInterval
+
   ngOnInit() {
+    this.checkInterval = setInterval(() => {
+      this.checkRedirect()
+    }, 500)
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.checkInterval)
+  }
+
+  checkRedirect() {
+    if (!!this.auth.currentUser) {
+      return this.router.navigate(['/'])
+    }
   }
 
   ngAfterViewInit() {
-    this.initUI()
+    try {
+      this.initUI()
+    } catch (error) {
+      window.location.reload()
+    }
   }
 
   initUI() {
-    const ui = new firebaseui.auth.AuthUI(this.auth.auth);
+    const ui = new firebaseui.auth.AuthUI(this.auth.auth)
     // The start method will wait until the DOM is loaded.
     const uiConfig = {
-      signInSuccessUrl: '<url-to-redirect-to-on-success>',
+      signInSuccessUrl: '/',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,

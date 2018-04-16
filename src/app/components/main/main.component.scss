@@ -16,11 +16,9 @@
   }
 }
 
-.query-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 8px;
+.main {
   position: relative;
+  min-height: calc(100vh - 2 * 64px - 20px - 6 * 8px)
 }
 
 .top-row {
