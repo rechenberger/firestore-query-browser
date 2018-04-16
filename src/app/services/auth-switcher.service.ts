@@ -12,6 +12,7 @@ export class AuthSwitcherService {
     private storage: StorageService
   ) {
     this.auth.auth.onAuthStateChanged(user => {
+      if (!user) return
       const currentUserData = this.currentUserData
       this.currentUsers = {
         ...this.currentUsers,
@@ -22,12 +23,16 @@ export class AuthSwitcherService {
 
   key = 'users'
 
+  getKey() {
+    return `${this.key}-${this.apps.activeProjectId}`
+  }
+
   public get currentUsers() {
-    return this.storage.get<any>(this.key, {})
+    return this.storage.get<any>(this.getKey(), {})
   }
 
   public set currentUsers(users) {
-    this.storage.set(this.key, users)
+    this.storage.set(this.getKey(), users)
   }
 
   public get currentUserData() {
@@ -46,9 +51,12 @@ export class AuthSwitcherService {
 
 
   watchUsers() {
-    return this.storage.watch(this.key, {})
+    return this.apps.activeProjectIdChanged
       .asObservable()
-
+      .switchMap(projectId => {
+        return this.storage.watch(this.getKey(), {})
+          .asObservable()
+      })
   }
 
   switchUser(user) {

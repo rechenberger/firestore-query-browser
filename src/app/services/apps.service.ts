@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core'
 import * as firebase from 'firebase'
 import * as _ from 'lodash'
+import { ReplaySubject } from 'rxjs'
 
 @Injectable()
 export class AppsService {
 
   activeApp
   private _activeProjectId
+  activeProjectIdChanged = new ReplaySubject(1)
 
   get activeProjectId() {
     return this._activeProjectId
   }
   set activeProjectId(activeProjectId: string) {
     this._activeProjectId = activeProjectId
+    this.activeProjectIdChanged.next(activeProjectId)
     if (this.activeProjectId) {
       localStorage.setItem('fqb-activeProjectId', this.activeProjectId)
       this.activeApp = _.find(firebase.apps, app => app.options.projectId == this.activeProjectId)
