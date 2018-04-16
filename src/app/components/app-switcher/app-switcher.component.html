@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
   <h3>App Switchter</h3>
 
   <mat-radio-group [(ngModel)]="appsService.activeProjectId">
@@ -23,4 +23,21 @@
   <ng-template #newBtn>
     <button mat-button (click)="showNew = true">ADD ANOTHER APP</button>
   </ng-template>
-</mat-card>
+</mat-card> -->
+
+<button mat-button [matMenuTriggerFor]="menu">
+  {{appsService.activeProjectId}}
+  <mat-icon>arrow_drop_down</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <ng-container *ngFor="let app of apps">
+    <ng-container *ngIf="app.projectId">
+      <button mat-menu-item (click)="pick(app.projectId)"> {{app.projectId}}</button>
+    </ng-container>
+  </ng-container>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon>add</mat-icon>
+    add app
+  </button>
+</mat-menu>

@@ -46,4 +46,8 @@ export class AppSwitcherComponent implements OnInit {
     this.apps = this.appsService.apps()
   }
 
+  pick(projectId) {
+    this.appsService.activeProjectId = projectId
+  }
+
 }
