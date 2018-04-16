@@ -32,7 +32,7 @@
       <app-query-input [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-input>
       <div class="flex-row-responsive">
         <app-query-snippets [(query)]="query"></app-query-snippets>
-        <app-query-actions [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-actions>
+        <app-query-actions class="flex-1" [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-actions>
       </div>
     </mat-card>
   </div>
