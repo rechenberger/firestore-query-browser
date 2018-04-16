@@ -10,12 +10,12 @@ import { MatSnackBar } from '@angular/material';
 export class AppSwitcherComponent implements OnInit {
 
   configString = `{
-    apiKey: "AIzaSyBpFFZomGDJK-pzaN1g6IoglAF6YCxl43Q",
-    authDomain: "crowd-e.firebaseapp.com",
-    databaseURL: "https://crowd-e.firebaseio.com",
-    projectId: "crowd-e",
-    storageBucket: "crowd-e.appspot.com",
-    messagingSenderId: "920940631373"
+    apiKey: "AIzaSyCzpisEJhHYFR09Rh48NAQX6g3gwG2v2U0",
+    authDomain: "firestore-query-browser.firebaseapp.com",
+    databaseURL: "https://firestore-query-browser.firebaseio.com",
+    projectId: "firestore-query-browser",
+    storageBucket: "firestore-query-browser.appspot.com",
+    messagingSenderId: "567385024694"
   }`
 
   showNew = false
