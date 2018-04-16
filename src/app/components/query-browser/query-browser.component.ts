@@ -158,6 +158,8 @@ export class QueryBrowserComponent implements OnInit {
       path: this.path,
       query: this.query
     })
+      .take(1)
+      .toPromise()
 
     this.fetchResults()
   }
@@ -166,6 +168,8 @@ export class QueryBrowserComponent implements OnInit {
     await this.dialog.create({
       path: this.path
     })
+      .take(1)
+      .toPromise()
 
     this.fetchResults()
   }
