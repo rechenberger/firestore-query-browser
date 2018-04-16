@@ -42,7 +42,8 @@ export class StorageService {
       ? value
       : JSON.stringify(value)
     localStorage.setItem(this.getKey(key), newValue)
-    this.subjects[key].next(value)
+    const subject = this.subjects[key]
+    if (subject) subject.next(value)
     return value
   }
 
