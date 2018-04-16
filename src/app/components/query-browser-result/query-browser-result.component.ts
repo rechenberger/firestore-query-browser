@@ -17,6 +17,8 @@ export class QueryBrowserResultComponent implements OnChanges {
   entries
   isCollection
 
+  showTable = true
+
   constructor(
     private apps: AppsService,
     private data: DataService,
