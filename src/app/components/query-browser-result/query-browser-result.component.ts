@@ -1,7 +1,7 @@
 import { Component, OnChanges, Input } from '@angular/core'
-import { AppsService } from '../../services/apps.service';
-import { DataService } from '../../services/data.service';
-import { EditService } from '../../services/edit.service';
+import { AppsService } from '../../services/apps.service'
+import { DataService } from '../../services/data.service'
+import { DialogService } from '../../services/dialog.service'
 
 @Component({
   selector: 'app-query-browser-result',
@@ -19,7 +19,7 @@ export class QueryBrowserResultComponent implements OnChanges {
   constructor(
     private apps: AppsService,
     private data: DataService,
-    private editSrv: EditService
+    private dialog: DialogService
   ) { }
 
   ngOnChanges(changes) {
@@ -53,7 +53,7 @@ export class QueryBrowserResultComponent implements OnChanges {
   }
 
   edit(entity) {
-    this.editSrv.openDialog({
+    this.dialog.edit({
       paths: [entity.path],
       template: entity.data
     })

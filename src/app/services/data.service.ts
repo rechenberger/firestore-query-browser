@@ -87,9 +87,14 @@ export class DataService {
     return subject.asObservable()
   }
 
-  edit(path: string, doc: any, override = false) {
+  singleRef(path) {
     const firestore = firebase.firestore(this.apps.activeApp)
     const ref = firestore.doc(path)
+    return ref
+  }
+
+  edit(path: string, doc: any, override = false) {
+    const ref = this.singleRef(path)
     const betterDoc = this.dateify(doc)
     if (override) {
       return ref.set(betterDoc)
@@ -141,6 +146,40 @@ export class DataService {
       for (const chunk of chunks) {
         await Promise.all(_.map(chunk, path =>
           this.edit(path, doc, override)
+            .then(() => {
+              doneCount++
+              subject.next(doneCount)
+            })
+        ))
+      }
+    }
+
+    doIt()
+      .then(() => subject.complete())
+
+    return subject.asObservable()
+
+  }
+
+  create(path: string, doc: any) {
+    const betterDoc = this.dateify(doc)
+    const firestore = firebase.firestore(this.apps.activeApp)
+    const collection = firestore.collection(path)
+    const id = betterDoc.id
+    const docRef = id ? collection.doc(id.toString()) : collection.doc()
+    return docRef.set(betterDoc)
+  }
+
+  createMultiple(path: string, docs: any[]) {
+    const chunks = _.chunk(docs, 20)
+
+    const subject = new BehaviorSubject<number>(0)
+    let doneCount = 0
+
+    const doIt = async () => {
+      for (const chunk of chunks) {
+        await Promise.all(_.map(chunk, doc =>
+          this.create(path, doc)
             .then(() => {
               doneCount++
               subject.next(doneCount)

@@ -1,10 +1,9 @@
-import { MatSnackBar } from '@angular/material';
-import { DataService } from './../../services/data.service';
-import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../../services/storage.service';
+import { MatSnackBar } from '@angular/material'
+import { DataService } from './../../services/data.service'
+import { Component, OnInit } from '@angular/core'
+import { StorageService } from '../../services/storage.service'
 import * as _ from 'lodash'
-import { DeleteService } from '../../services/delete.service';
-import { EditService } from '../../services/edit.service';
+import { DialogService } from '../../services/dialog.service'
 
 @Component({
   selector: 'app-query-browser',
@@ -13,7 +12,7 @@ import { EditService } from '../../services/edit.service';
 })
 export class QueryBrowserComponent implements OnInit {
 
-  path = 'mandants'
+  path = 'dinosaurs'
   query = 'ref'
 
   queryExamples = [
@@ -79,8 +78,7 @@ export class QueryBrowserComponent implements OnInit {
     private data: DataService,
     private snackbar: MatSnackBar,
     private storage: StorageService,
-    private deleteSrv: DeleteService,
-    private editSrv: EditService
+    private dialog: DialogService
   ) { }
 
   ngOnInit() {
@@ -155,11 +153,25 @@ export class QueryBrowserComponent implements OnInit {
     this.storage.set('history', [])
   }
 
-  deleteResults() {
-    this.deleteSrv.openDialog({
+  async deleteResults() {
+    await this.dialog.delete({
       path: this.path,
       query: this.query
     })
+      .take(1)
+      .toPromise()
+
+    this.fetchResults()
+  }
+
+  async create() {
+    await this.dialog.create({
+      path: this.path
+    })
+      .take(1)
+      .toPromise()
+
+    this.fetchResults()
   }
 
   async editResults() {
@@ -174,7 +186,7 @@ export class QueryBrowserComponent implements OnInit {
     const paths = collection.map(doc => doc.path)
     const template = collection[0].data
 
-    await this.editSrv.openDialog({
+    await this.dialog.edit({
       template,
       paths
     })

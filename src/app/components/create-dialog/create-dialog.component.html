@@ -1,0 +1,31 @@
+<div class="root">
+  <div class="flex-row">
+    <h2 mat-dialog-title>
+      Creating
+    </h2>
+  </div>
+  <mat-dialog-content>
+    <ng-container *ngIf="loading; else preLoading">
+      <div class="counter">
+        <span>{{(doneCount | async)}}</span>
+        <span>/</span>
+        <span>{{lengthToCreate}}</span>
+      </div>
+      <mat-progress-bar mode="determinate" [value]="percentage | async"></mat-progress-bar>
+    </ng-container>
+    <ng-template #preLoading>
+      <mat-form-field class="flex-1">
+        <textarea class="query" matInput placeholder="Object or Array" [(ngModel)]="input" (keyup.control.enter)="answer(true)" (keyup.shift.enter)="answer(true)"></textarea>
+      </mat-form-field>
+    </ng-template>
+  </mat-dialog-content>
+  <mat-dialog-actions class="actions">
+    <ng-container *ngIf="loading; else preLoadingActions">
+      <button mat-raised-button color="primary" (click)="answer(true)" [disabled]="!done">DONE</button>
+    </ng-container>
+    <ng-template #preLoadingActions>
+      <button mat-button mat-raised-button color="primary" (click)="doIt()">CREATE</button>
+      <button mat-button (click)="answer(false)">CANCEL</button>
+    </ng-template>
+  </mat-dialog-actions>
+</div>
