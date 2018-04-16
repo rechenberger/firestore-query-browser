@@ -6,6 +6,7 @@ import * as _ from 'lodash'
 import { DialogService } from '../../services/dialog.service'
 import { AppsService } from '../../services/apps.service';
 import { HistoryService } from '../../services/history.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-query-browser',
@@ -18,7 +19,9 @@ export class QueryBrowserComponent implements OnInit {
     private snackbar: MatSnackBar,
     private storage: StorageService,
     private dialog: DialogService,
-    public historySrv: HistoryService
+    public historySrv: HistoryService,
+    private appsSrv: AppsService,
+    private router: Router
   ) { }
 
   path = 'dinosaurs'
@@ -84,6 +87,11 @@ export class QueryBrowserComponent implements OnInit {
   loading = false
 
   ngOnInit() {
+    if (!this.appsSrv.activeProjectId) {
+      this.router.navigate(['/add'])
+      return
+    }
+
     this.fetchResults({
       addToHistory: false
     })
