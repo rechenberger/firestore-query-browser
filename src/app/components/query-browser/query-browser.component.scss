@@ -31,3 +31,16 @@ pre {
     margin-left: 0;
   }
 }
+
+.top-row {
+  margin: -8px;
+  &>* {
+    margin: 8px !important;
+  }
+  align-items: stretch;
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+}

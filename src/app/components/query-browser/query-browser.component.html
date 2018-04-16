@@ -1,5 +1,4 @@
-<div class="root">
-
+<!-- <div class="root">
   <mat-card>
     <h3>Browser</h3>
     <app-query-input [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-input>
@@ -25,6 +24,25 @@
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <app-query-browser-result [result]="result | async" [path]="path"></app-query-browser-result>
   </mat-card>
+</div> -->
 
-
+<div class="flex-row top-row">
+  <div class="flex-1">
+    <mat-card>
+      <app-query-input [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-input>
+      <app-query-snippets [(query)]="query"></app-query-snippets>
+    </mat-card>
+    <mat-card style="padding-top: 0; padding-bottom: 0; margin-top: 16px">
+      <app-query-actions [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-actions>
+    </mat-card>
+  </div>
+  <mat-card class="flex-1">
+    <!-- <div class="flex-1"></div> -->
+    <app-query-history [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-history>
+  </mat-card>
 </div>
+
+<mat-card style="margin-top: 16px;">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <app-query-browser-result [result]="result | async" [path]="path"></app-query-browser-result>
+</mat-card>

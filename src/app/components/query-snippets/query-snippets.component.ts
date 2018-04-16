@@ -13,10 +13,6 @@ export class QuerySnippetsComponent implements OnInit {
   snippets = [
     {
       name: 'where',
-      content: `.where('', '', '')`,
-    },
-    {
-      name: 'where ==',
       content: `.where('', '==', '')`,
     },
     {
@@ -30,18 +26,22 @@ export class QuerySnippetsComponent implements OnInit {
     {
       name: 'startAt',
       content: `.startAt()`,
+      more: true
     },
     {
       name: 'endAt',
       content: `.endAt()`,
+      more: true
     },
     {
       name: 'startAfter',
       content: `.startAfter()`,
+      more: true
     },
     {
       name: 'endAfter',
       content: `.endAfter()`,
+      more: true
     },
   ]
 

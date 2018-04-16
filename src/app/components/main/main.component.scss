@@ -18,7 +18,8 @@
 
 .main {
   position: relative;
-  min-height: calc(100vh - 2 * 64px - 20px - 6 * 8px)
+  min-height: calc(100vh - 2 * 64px - 20px - 6 * 8px);
+  padding: 16px;
 }
 
 .top-row {

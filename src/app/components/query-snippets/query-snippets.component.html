@@ -1,8 +1,10 @@
 <div class="flex-column">
-  Add Snippet
   <div class="flex-row flex-1" style="flex-wrap: wrap; justify-content: flex-start">
     <ng-container *ngFor="let snippet of snippets">
-      <button mat-button (click)="addSnippet(snippet)">{{snippet.name}}</button>
+      <ng-container *ngIf="!snippet.more">
+        <button mat-button (click)="addSnippet(snippet)">{{snippet.name}}</button>
+      </ng-container>
     </ng-container>
+    <button mat-button>...</button>
   </div>
 </div>
