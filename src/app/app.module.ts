@@ -32,7 +32,8 @@ import { QueryBrowserResultComponent } from './components/query-browser-result/q
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component'
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component'
 import { CreateDialogComponent } from './components/create-dialog/create-dialog.component'
-import { DialogService } from './services/dialog.service'
+import { DialogService } from './services/dialog.service';
+import { ToolbarComponent } from './components/toolbar/toolbar.component'
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { DialogService } from './services/dialog.service'
     QueryBrowserResultComponent,
     DeleteDialogComponent,
     EditDialogComponent,
-    CreateDialogComponent
+    CreateDialogComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
