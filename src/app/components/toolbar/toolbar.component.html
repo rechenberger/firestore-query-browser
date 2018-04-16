@@ -2,6 +2,24 @@
   <div class="main-container">
     <div class="flex-row">
       <a routerLink="/">Firestore Query Browser</a>
+      <span style="flex: 1"></span>
+
+      <div class="switcherTop">
+        <ng-container [ngTemplateOutlet]="switcher"></ng-container>
+      </div>
+
+      <!-- <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item href="https://github.com/rechenberger/firestore-query-browser">
+          <mat-icon>
+            <i class="fa fab fa-github"></i>
+          </mat-icon>
+          Project on Github
+        </a>
+      </mat-menu> -->
+
       <a mat-icon-button class="fa-btn" href="https://github.com/rechenberger/firestore-query-browser" matTooltip="Project on Github">
         <i class="fa fab fa-github"></i>
       </a>
@@ -10,19 +28,24 @@
 </mat-toolbar>
 
 
-<mat-toolbar>
+<mat-toolbar class="switcherBottom">
   <div class="main-container">
-    <div class="flex-row">
-      <ng-container *ngIf="apps.activeProjectId; else noAppAddedYet">
-        <app-app-switcher></app-app-switcher>
-        <app-auth-switcher></app-auth-switcher>
-      </ng-container>
-      <ng-template #noAppAddedYet>
-        <a mat-button color="primary" href="https://github.com/rechenberger/firestore-query-browser/blob/master/README.md">
-          <mat-icon>exit_to_app</mat-icon>
-          Getting Stated Guide
-        </a>
-      </ng-template>
-    </div>
+    <ng-container [ngTemplateOutlet]="switcher"></ng-container>
   </div>
 </mat-toolbar>
+
+<ng-template #switcher>
+
+  <div class="flex-row">
+    <ng-container *ngIf="apps.activeProjectId; else noAppAddedYet">
+      <app-app-switcher></app-app-switcher>
+      <app-auth-switcher></app-auth-switcher>
+    </ng-container>
+    <ng-template #noAppAddedYet>
+      <a mat-button color="primary" href="https://github.com/rechenberger/firestore-query-browser/blob/master/README.md">
+        <mat-icon>exit_to_app</mat-icon>
+        Getting Stated Guide
+      </a>
+    </ng-template>
+  </div>
+</ng-template>

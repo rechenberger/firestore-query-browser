@@ -1,0 +1,16 @@
+a[mat-menu-item] {
+  text-decoration: none !important;
+}
+
+
+@media (max-width: 999px) {
+  .switcherTop {
+    display: none;
+  }
+}
+@media (min-width: 1000px) {
+  .switcherBottom {
+    display: none;
+  }
+}
+
