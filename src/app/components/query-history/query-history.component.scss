@@ -1,0 +1,16 @@
+.queryText {
+  max-width: calc(100vw - 140px);
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.historyEntries {
+  @media (max-width: 1000px) {
+    max-height: calc(100vh - 140px);
+    overflow-y: scroll;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}

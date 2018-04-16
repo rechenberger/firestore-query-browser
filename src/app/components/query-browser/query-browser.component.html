@@ -20,38 +20,9 @@
 
     <mat-divider></mat-divider>
 
-    <div class="flex-row option" *ngIf="(historyEntries | async).length">
-      <div class="flex-1">
-        <div class="flex-row">
-          <span>History</span>
-          <button mat-button (click)="historySrv.removeAllEntries()">Delete all</button>
-        </div>
-        <ul class="historyEntries">
-          <ng-container *ngFor="let entry of historyEntries | async">
-            <li class="flex-row historyEntry">
-              <span class="flex-1 clickable queryText" (click)="setAndFetch(entry)">Path: {{ entry.path}}
-                <br> Query: {{ entry.query}} </span>
-              <button mat-icon-button (click)="historySrv.removeEntry(entry)">
-                <mat-icon aria-label="Delete">delete</mat-icon>
-              </button>
-            </li>
-          </ng-container>
-        </ul>
-      </div>
+    <div class="option">
+      <app-query-history [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-history>
     </div>
-
-    <!-- <mat-divider></mat-divider>
-
-    <div class="flex-row option">
-      <div class="flex-1">
-        Examples
-        <ul>
-          <ng-container *ngFor="let queryExample of queryExamples">
-            <li (click)="setAndFetch(queryExample)" class="clickable">{{queryExample.query}}</li>
-          </ng-container>
-        </ul>
-      </div>
-    </div> -->
   </mat-card>
 
   <mat-card class="results flex-1">

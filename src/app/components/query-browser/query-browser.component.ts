@@ -4,9 +4,9 @@ import { Component, OnInit } from '@angular/core'
 import { StorageService } from '../../services/storage.service'
 import * as _ from 'lodash'
 import { DialogService } from '../../services/dialog.service'
-import { AppsService } from '../../services/apps.service';
+import { AppsService } from '../../services/apps.service'
 import { HistoryService } from '../../services/history.service'
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-query-browser',
@@ -19,34 +19,13 @@ export class QueryBrowserComponent implements OnInit {
     private snackbar: MatSnackBar,
     private storage: StorageService,
     private dialog: DialogService,
-    public historySrv: HistoryService,
     private appsSrv: AppsService,
-    private router: Router
+    private router: Router,
+    private historySrv: HistoryService
   ) { }
 
   path = 'dinosaurs'
   query = 'ref'
-
-  queryExamples = [
-    {
-      query: `ref`,
-      label: `No Query`
-    },
-    {
-      query: `ref.where('id', '==', 'test')`,
-      label: `Filters by id`
-    },
-    {
-      query: `ref.orderBy('userCount')`,
-      label: `orders by userCount`
-    },
-    {
-      query: `ref.limit(2)`,
-      label: ``
-    }
-  ]
-
-  historyEntries = this.historySrv.getHistory()
 
   result = Promise.resolve(null)
   loading = false
@@ -60,16 +39,6 @@ export class QueryBrowserComponent implements OnInit {
     this.fetchResults({
       addToHistory: false
     })
-    this.loadFirstHistoryEntry()
-  }
-
-  loadFirstHistoryEntry() {
-    this.historyEntries
-      .take(1)
-      .filter(entries => !!entries && !!entries.length)
-      .map(entries => entries[0])
-      .do(entry => this.setAndFetch(entry))
-      .subscribe(() => null)
   }
 
   fetchResults(options = { addToHistory: true }) {
