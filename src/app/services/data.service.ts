@@ -99,13 +99,23 @@ export class DataService {
   }
 
   dateify(doc: any) {
-    // Date
+    // Delete
+    if (doc === '__del__') {
+      return firebase.firestore.FieldValue.delete()
+    }
+
+    // String + Date
     if (typeof doc === 'string') {
       const date = Date.parse(doc)
       if (Number.isNaN(date)) {
         return doc
       }
       return new Date(date)
+    }
+
+    // Null
+    if (doc === null) {
+      return null
     }
 
     // Array

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import * as _ from 'lodash'
 import { DeleteService } from '../../services/delete.service';
+import { EditService } from '../../services/edit.service';
 
 @Component({
   selector: 'app-query-browser',
@@ -78,7 +79,8 @@ export class QueryBrowserComponent implements OnInit {
     private data: DataService,
     private snackbar: MatSnackBar,
     private storage: StorageService,
-    private deleteSrv: DeleteService
+    private deleteSrv: DeleteService,
+    private editSrv: EditService
   ) { }
 
   ngOnInit() {
@@ -158,6 +160,28 @@ export class QueryBrowserComponent implements OnInit {
       path: this.path,
       query: this.query
     })
+  }
+
+  async editResults() {
+    const res = await this.data.get({
+      path: this.path,
+      query: this.query
+    })
+    const collection = Array.isArray(res) ? res : [res]
+
+    if (collection.length === 0) return
+
+    const paths = collection.map(doc => doc.path)
+    const template = collection[0].data
+
+    await this.editSrv.openDialog({
+      template,
+      paths
+    })
+      .take(1)
+      .toPromise()
+
+    this.fetchResults()
   }
 
 }
