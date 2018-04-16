@@ -41,6 +41,7 @@ import { QuerySnippetsComponent } from './components/query-snippets/query-snippe
 import { QueryHistoryComponent } from './components/query-history/query-history.component';
 import { QueryActionsComponent } from './components/query-actions/query-actions.component'
 import { UtilService } from './services/util.service';
+import { ResultTableComponent } from './components/result-table/result-table.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { UtilService } from './services/util.service';
     QueryInputComponent,
     QuerySnippetsComponent,
     QueryHistoryComponent,
-    QueryActionsComponent
+    QueryActionsComponent,
+    ResultTableComponent
   ],
   imports: [
     BrowserModule,

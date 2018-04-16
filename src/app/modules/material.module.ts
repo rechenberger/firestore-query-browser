@@ -3,7 +3,7 @@ import {
   MatButtonModule, MatCardModule, MatProgressBarModule, MatIconModule, MatMenuModule,
   MatToolbarModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatCheckboxModule,
   MatTooltipModule, MatListModule, MatSnackBarModule, MatChipsModule, MatProgressSpinnerModule,
-  MatDialogModule, MatTabsModule, MatButtonToggle, MatButtonToggleModule, MatRadioModule, MatSlideToggleModule
+  MatDialogModule, MatTabsModule, MatButtonToggle, MatButtonToggleModule, MatRadioModule, MatSlideToggleModule, MatPaginatorModule, MatSortModule
 } from '@angular/material'
 import { MatSelectModule } from '@angular/material/select'
 import { MatTableModule } from '@angular/material/table'
@@ -30,7 +30,9 @@ const modules = [
   MatTabsModule,
   MatButtonToggleModule,
   MatRadioModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatPaginatorModule,
+  MatSortModule
 ]
 
 @NgModule({

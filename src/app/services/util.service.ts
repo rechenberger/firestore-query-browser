@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core'
+import { AppsService } from './apps.service';
 
 @Injectable()
 export class UtilService {
 
-  constructor() { }
+  constructor(
+    private apps: AppsService
+  ) { }
 
   gotoConsole(entity: { path: string }) {
     const relativeUrl = entity.path.split('/').join('~2F')
