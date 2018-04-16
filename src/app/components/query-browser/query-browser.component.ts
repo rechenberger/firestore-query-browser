@@ -58,16 +58,6 @@ export class QueryBrowserComponent implements OnInit {
     }
   }
 
-  setAndFetch(entry) {
-    if (entry.path) {
-      this.path = entry.path
-    }
-    if (entry.query) {
-      this.query = entry.query
-    }
-    this.fetchResults()
-  }
-
   async deleteResults() {
     await this.dialog.delete({
       path: this.path,
