@@ -1,3 +1,4 @@
+import { HistoryService } from './services/history.service'
 import { AuthService } from './services/auth.service'
 import { AppsService } from './services/apps.service'
 import { MaterialModule } from './modules/material.module'
@@ -64,7 +65,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component'
     AuthService,
     StorageService,
     AuthSwitcherService,
-    DialogService
+    DialogService,
+    HistoryService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
