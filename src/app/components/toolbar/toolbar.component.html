@@ -14,7 +14,9 @@
   <div class="main-container">
     <div class="flex-row">
       <app-app-switcher></app-app-switcher>
-      <app-auth-switcher></app-auth-switcher>
+      <ng-container *ngIf="apps.activeProjectId">
+        <app-auth-switcher></app-auth-switcher>
+      </ng-container>
     </div>
   </div>
 </mat-toolbar>
