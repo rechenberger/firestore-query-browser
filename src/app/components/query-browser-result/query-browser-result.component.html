@@ -11,7 +11,7 @@
       <ng-container *ngIf="entity; else noEntity">
         <div class="item">
           <pre>{{entity?.data || null | json}}</pre>
-          <app-entry-menu [entity]="entity"></app-entry-menu>
+          <app-entry-menu-button [entity]="entity"></app-entry-menu-button>
         </div>
 
       </ng-container>
