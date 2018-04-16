@@ -3,6 +3,7 @@ import { QueryBrowserComponent } from './components/query-browser/query-browser.
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { LoginComponent } from './components/login/login.component'
+import { AddAppComponent } from './components/add-app/add-app.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'add',
+        component: AddAppComponent
       }
     ]
   },
