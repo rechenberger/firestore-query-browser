@@ -36,7 +36,8 @@ import { CreateDialogComponent } from './components/create-dialog/create-dialog.
 import { DialogService } from './services/dialog.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AddAppComponent } from './components/add-app/add-app.component';
-import { QueryInputComponent } from './components/query-input/query-input.component'
+import { QueryInputComponent } from './components/query-input/query-input.component';
+import { QuerySnippetsComponent } from './components/query-snippets/query-snippets.component'
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { QueryInputComponent } from './components/query-input/query-input.compon
     CreateDialogComponent,
     ToolbarComponent,
     AddAppComponent,
-    QueryInputComponent
+    QueryInputComponent,
+    QuerySnippetsComponent
   ],
   imports: [
     BrowserModule,

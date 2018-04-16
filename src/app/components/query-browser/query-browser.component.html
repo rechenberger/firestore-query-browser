@@ -14,13 +14,8 @@
 
     <mat-divider></mat-divider>
 
-    <div class="flex-column option">
-      Add Snippet
-      <div class="flex-row flex-1" style="flex-wrap: wrap;">
-        <ng-container *ngFor="let snippet of snippets">
-          <button mat-button (click)="addSnippet(snippet)">{{snippet.name}}</button>
-        </ng-container>
-      </div>
+    <div class="option">
+      <app-query-snippets [(query)]="query"></app-query-snippets>
     </div>
 
     <mat-divider></mat-divider>

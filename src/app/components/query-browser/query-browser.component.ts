@@ -46,41 +46,6 @@ export class QueryBrowserComponent implements OnInit {
     }
   ]
 
-  snippets = [
-    {
-      name: 'where',
-      content: `.where('', '', '')`,
-    },
-    {
-      name: 'where ==',
-      content: `.where('', '==', '')`,
-    },
-    {
-      name: 'limit',
-      content: `.limit()`,
-    },
-    {
-      name: 'orderBy',
-      content: `.orderBy('', 'asc')`,
-    },
-    {
-      name: 'startAt',
-      content: `.startAt()`,
-    },
-    {
-      name: 'endAt',
-      content: `.endAt()`,
-    },
-    {
-      name: 'startAfter',
-      content: `.startAfter()`,
-    },
-    {
-      name: 'endAfter',
-      content: `.endAfter()`,
-    },
-  ]
-
   historyEntries = this.historySrv.getHistory()
 
   result = Promise.resolve(null)
@@ -122,11 +87,6 @@ export class QueryBrowserComponent implements OnInit {
     if (addToHistory) {
       this.historySrv.addEntry({ path: this.path, query: this.query })
     }
-  }
-
-  addSnippet(snippet) {
-    this.query += `
-  ${snippet.content}`
   }
 
   setAndFetch(entry) {
