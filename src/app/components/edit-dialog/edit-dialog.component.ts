@@ -23,6 +23,8 @@ export class EditDialogComponent implements OnInit {
     private snackbar: MatSnackBar
   ) { }
 
+  override = false
+
   newEntity = `{
 
 }`
@@ -50,7 +52,7 @@ export class EditDialogComponent implements OnInit {
 
     this.loading = true
 
-    this.doneCount = this.data.editMultiple(this.options.paths, newEntity)
+    this.doneCount = this.data.editMultiple(this.options.paths, newEntity, this.override)
       .publishReplay(1)
       .refCount()
 

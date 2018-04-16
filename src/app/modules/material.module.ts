@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'
 import {
   MatButtonModule, MatCardModule, MatProgressBarModule, MatIconModule, MatMenuModule,
   MatToolbarModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatCheckboxModule,
   MatTooltipModule, MatListModule, MatSnackBarModule, MatChipsModule, MatProgressSpinnerModule,
-  MatDialogModule, MatTabsModule, MatButtonToggle, MatButtonToggleModule, MatRadioModule
-} from '@angular/material';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTableModule } from '@angular/material/table';
+  MatDialogModule, MatTabsModule, MatButtonToggle, MatButtonToggleModule, MatRadioModule, MatSlideToggleModule
+} from '@angular/material'
+import { MatSelectModule } from '@angular/material/select'
+import { MatTableModule } from '@angular/material/table'
 
 const modules = [
   MatButtonModule,
@@ -29,7 +29,8 @@ const modules = [
   MatDialogModule,
   MatTabsModule,
   MatButtonToggleModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSlideToggleModule
 ]
 
 @NgModule({

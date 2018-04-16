@@ -1,9 +1,12 @@
 <div class="root">
-  <h2 mat-dialog-title>
-    Editing
-    <strong>{{options.paths.length}}</strong>
-    {{options.paths.length==1?'entry':'entries'}}
-  </h2>
+  <div class="flex-row">
+    <h2 mat-dialog-title>
+      Editing
+      <strong>{{options.paths.length}}</strong>
+      {{options.paths.length==1?'entry':'entries'}}
+    </h2>
+    <mat-slide-toggle [(ngModel)]="override">Override?</mat-slide-toggle>
+  </div>
   <mat-dialog-content>
     <ng-container *ngIf="loading; else preLoading">
       <div class="counter">

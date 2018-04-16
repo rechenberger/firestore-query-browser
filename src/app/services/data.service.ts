@@ -87,13 +87,41 @@ export class DataService {
     return subject.asObservable()
   }
 
-  edit(path: string, doc: any) {
+  edit(path: string, doc: any, override = false) {
     const firestore = firebase.firestore(this.apps.activeApp)
     const ref = firestore.doc(path)
-    return ref.update(doc)
+    const betterDoc = this.dateify(doc)
+    if (override) {
+      return ref.set(betterDoc)
+    } else {
+      return ref.update(betterDoc)
+    }
   }
 
-  editMultiple(paths: string[], doc: any) {
+  dateify(doc: any) {
+    // Date
+    if (typeof doc === 'string') {
+      const date = Date.parse(doc)
+      if (Number.isNaN(date)) {
+        return doc
+      }
+      return new Date(date)
+    }
+
+    // Array
+    if (Array.isArray(doc)) {
+      return _.map(doc, (val, key) => this.dateify(val))
+    }
+
+    // Object
+    if (typeof doc === 'object') {
+      return _.mapValues(doc, (val, key) => this.dateify(val))
+    }
+
+    return doc
+  }
+
+  editMultiple(paths: string[], doc: any, override = false) {
     const chunks = _.chunk(paths, 20)
 
     const subject = new BehaviorSubject<number>(0)
@@ -102,7 +130,7 @@ export class DataService {
     const doIt = async () => {
       for (const chunk of chunks) {
         await Promise.all(_.map(chunk, path =>
-          this.edit(path, doc)
+          this.edit(path, doc, override)
             .then(() => {
               doneCount++
               subject.next(doneCount)
