@@ -23,8 +23,11 @@ export class ResultTableComponent implements OnChanges, AfterViewInit {
 
   ngOnChanges(changes) {
     if (changes.entries) {
-      console.log('this.entries', this.entries)
-      this.dataSource.data = this.entries
+      this.dataSource.data = _.map(this.entries, entry => ({
+        ...entry.data,
+        ID: entry.id,
+        entity: entry
+      }))
       this.calcKeys()
     }
   }
@@ -41,13 +44,11 @@ export class ResultTableComponent implements OnChanges, AfterViewInit {
       ...this.keys,
       '$actions'
     ]
-
-    console.log('this.keys', this.keys)
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   applyFilter(filterValue: string) {
