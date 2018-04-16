@@ -27,12 +27,12 @@ import 'rxjs/add/operator/take'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/filter'
 
-import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.component';
-import { QueryBrowserResultComponent } from './components/query-browser-result/query-browser-result.component';
+import { AuthSwitcherComponent } from './components/auth-switcher/auth-switcher.component'
+import { QueryBrowserResultComponent } from './components/query-browser-result/query-browser-result.component'
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component'
-import { DeleteService } from './services/delete.service';
-import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
-import { EditService } from './services/edit.service';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component'
+import { CreateDialogComponent } from './components/create-dialog/create-dialog.component'
+import { DialogService } from './services/dialog.service'
 
 
 @NgModule({
@@ -45,7 +45,8 @@ import { EditService } from './services/edit.service';
     AuthSwitcherComponent,
     QueryBrowserResultComponent,
     DeleteDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    CreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -61,13 +62,13 @@ import { EditService } from './services/edit.service';
     AuthService,
     StorageService,
     AuthSwitcherService,
-    DeleteService,
-    EditService
+    DialogService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     DeleteDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    CreateDialogComponent
   ]
 })
 export class AppModule { }

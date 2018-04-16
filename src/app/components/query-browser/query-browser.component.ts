@@ -1,10 +1,9 @@
-import { MatSnackBar } from '@angular/material';
-import { DataService } from './../../services/data.service';
-import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../../services/storage.service';
+import { MatSnackBar } from '@angular/material'
+import { DataService } from './../../services/data.service'
+import { Component, OnInit } from '@angular/core'
+import { StorageService } from '../../services/storage.service'
 import * as _ from 'lodash'
-import { DeleteService } from '../../services/delete.service';
-import { EditService } from '../../services/edit.service';
+import { DialogService } from '../../services/dialog.service'
 
 @Component({
   selector: 'app-query-browser',
@@ -79,8 +78,7 @@ export class QueryBrowserComponent implements OnInit {
     private data: DataService,
     private snackbar: MatSnackBar,
     private storage: StorageService,
-    private deleteSrv: DeleteService,
-    private editSrv: EditService
+    private dialog: DialogService
   ) { }
 
   ngOnInit() {
@@ -156,7 +154,7 @@ export class QueryBrowserComponent implements OnInit {
   }
 
   deleteResults() {
-    this.deleteSrv.openDialog({
+    this.dialog.delete({
       path: this.path,
       query: this.query
     })
@@ -174,7 +172,7 @@ export class QueryBrowserComponent implements OnInit {
     const paths = collection.map(doc => doc.path)
     const template = collection[0].data
 
-    await this.editSrv.openDialog({
+    await this.dialog.edit({
       template,
       paths
     })
