@@ -9,13 +9,13 @@
       <div class="counter">
         <span>{{(doneCount | async)}}</span>
         <span>/</span>
-        <span>{{options.paths.length}}</span>
+        <span>{{lengthToCreate}}</span>
       </div>
       <mat-progress-bar mode="determinate" [value]="percentage | async"></mat-progress-bar>
     </ng-container>
     <ng-template #preLoading>
       <mat-form-field class="flex-1">
-        <textarea class="query" matInput placeholder="Update Object" [(ngModel)]="input" (keyup.control.enter)="answer(true)" (keyup.shift.enter)="answer(true)"></textarea>
+        <textarea class="query" matInput placeholder="Object or Array" [(ngModel)]="input" (keyup.control.enter)="answer(true)" (keyup.shift.enter)="answer(true)"></textarea>
       </mat-form-field>
     </ng-template>
   </mat-dialog-content>
@@ -24,7 +24,7 @@
       <button mat-raised-button color="primary" (click)="answer(true)" [disabled]="!done">DONE</button>
     </ng-container>
     <ng-template #preLoadingActions>
-      <button mat-button mat-raised-button color="primary" (click)="doIt()">EDIT</button>
+      <button mat-button mat-raised-button color="primary" (click)="doIt()">CREATE</button>
       <button mat-button (click)="answer(false)">CANCEL</button>
     </ng-template>
   </mat-dialog-actions>
