@@ -31,9 +31,11 @@ export class EditorComponent implements OnInit {
     this.query = val
     this.editor.nativeElement.focus()
 
-    if (this.snippetInQuery) return this.selectNextSnippet(pos)
-    const newCursorPos = pos + text.length
-    this.setCursorPos(newCursorPos)
+    setTimeout(() => {
+      if (this.snippetInQuery()) return this.selectNextSnippet(pos)
+      const newCursorPos = pos + text.length
+      this.setCursorPos(newCursorPos)
+    }, 0)
   }
 
   indentedAdd(text) {
@@ -51,14 +53,26 @@ export class EditorComponent implements OnInit {
 
   toggleComment() {
     const pos = this.getCursorPos()
-    const text: string = this.query.substr(0, pos)
-    const posAfterNewLine = text.lastIndexOf('\n') + 1
+    const posAfterNewLine = this.posAfterNextNewLine()
     if (this.query.substr(posAfterNewLine, 2) === '//') {
       this.query = this.query.substr(0, posAfterNewLine) + this.query.substr(posAfterNewLine + 2)
-      this.setCursorPos(pos)
+      setTimeout(() => {
+        this.setCursorPos(pos)
+      }, 0)
       return
     }
     this.add('//', posAfterNewLine)
+  }
+
+  addAfterLine(text) {
+    const posAfterNewLine = this.posAfterNextNewLine()
+    this.add(text, posAfterNewLine)
+  }
+
+  protected posAfterNextNewLine() {
+    const pos = this.getCursorPos()
+    const text: string = this.query.substr(0, pos)
+    return text.lastIndexOf('\n') + 1
   }
 
   protected getCursorPos() {
@@ -66,10 +80,8 @@ export class EditorComponent implements OnInit {
   }
 
   protected setCursorPos(pos) {
-    setTimeout(() => {
-      this.editor.nativeElement.selectionStart = pos
-      this.editor.nativeElement.selectionEnd = pos
-    }, 0)
+    this.editor.nativeElement.selectionStart = pos
+    this.editor.nativeElement.selectionEnd = pos
   }
 
   protected snippetInQuery() {

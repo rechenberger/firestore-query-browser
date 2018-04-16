@@ -63,7 +63,7 @@ export class QueryBrowserComponent implements OnInit {
 
   addSnippet(snippet) {
     if (snippet === '__toggleComment__') return this.editor.toggleComment()
-    this.editor.indentedAdd(snippet)
+    this.editor.addAfterLine('\n  ' + snippet)
   }
 
 }
