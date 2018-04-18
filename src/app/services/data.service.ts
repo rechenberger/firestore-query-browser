@@ -6,7 +6,9 @@ import { MAT_DIALOG_SCROLL_STRATEGY } from '@angular/material'
 import * as _ from 'lodash'
 import { Observable } from '@firebase/util'
 import { Subject, BehaviorSubject } from 'rxjs'
-import { AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestoreDocument } from 'angularfire2/firestore'
+
+const DATETIME_REGEX = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/
 
 @Injectable()
 export class DataService {
@@ -111,10 +113,10 @@ export class DataService {
 
     // String + Date
     if (typeof doc === 'string') {
-      const date = Date.parse(doc)
-      if (Number.isNaN(date)) {
+      if (!doc.match(DATETIME_REGEX)) {
         return doc
       }
+      const date = Date.parse(doc)
       return new Date(date)
     }
 
