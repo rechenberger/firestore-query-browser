@@ -96,7 +96,7 @@ export class EditorComponent implements OnInit {
     this.editor.nativeElement.selectionEnd = pos
   }
 
-  protected snippetInQuery() {
+  snippetInQuery() {
     return !!this.query.match(this.snippetRegex)
   }
 
