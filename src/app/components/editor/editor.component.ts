@@ -31,6 +31,7 @@ export class EditorComponent implements OnInit {
     val = splitVal.join('')
     this.query = val
     this.editor.nativeElement.focus()
+    this.queryChange.emit(this.query)
 
     setTimeout(() => {
       if (this.snippetInQuery()) return this.selectNextSnippet(pos)
