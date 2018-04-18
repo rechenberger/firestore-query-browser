@@ -31,7 +31,7 @@
     <mat-card>
       <app-query-input [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-input>
       <div class="flex-row">
-        <app-editor #editor [(query)]="query" (keyup.control.enter)="fetchResults()" (keyup.shift.enter)="fetchResults()"></app-editor>
+        <app-editor #editor [(query)]="query" (keyup.control.enter)="fetchResults()"></app-editor>
       </div>
       <div class="flex-row-responsive">
         <app-query-snippets (addSnippet)="addSnippet($event)"></app-query-snippets>
