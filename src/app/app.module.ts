@@ -1,3 +1,4 @@
+import { GoogleAnalyticsService } from './services/google-analytics.service'
 import { HistoryService } from './services/history.service'
 import { AuthService } from './services/auth.service'
 import { AppsService } from './services/apps.service'
@@ -84,7 +85,8 @@ import { EntryMenuButtonComponent } from './components/entry-menu-button/entry-m
     AuthSwitcherService,
     DialogService,
     HistoryService,
-    UtilService
+    UtilService,
+    GoogleAnalyticsService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

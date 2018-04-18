@@ -1,6 +1,7 @@
 import { AuthService } from './../../services/auth.service'
-import { AppsService } from './../../services/apps.service';
-import { Component, OnInit } from '@angular/core';
+import { AppsService } from './../../services/apps.service'
+import { Component, OnInit } from '@angular/core'
+import { GoogleAnalyticsService } from '../../services/google-analytics.service'
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     public apps: AppsService,
-    public auth: AuthService
+    public auth: AuthService,
+    public ga: GoogleAnalyticsService
   ) { }
 
   ngOnInit() {
