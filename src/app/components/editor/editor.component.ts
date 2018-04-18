@@ -11,7 +11,7 @@ export class EditorComponent implements OnInit {
 
   @ViewChild('editor') editor: ElementRef
 
-  @Input() query
+  @Input() query: string
   @Output() queryChange = new EventEmitter()
   snippetRegex = /#\{([^#.]*)\}/
 
@@ -19,7 +19,8 @@ export class EditorComponent implements OnInit {
 
   }
 
-  add(text: string, pos = this.getCursorPos()) {
+  add(text: string, defaultPos = null) {
+    const pos = typeof defaultPos === 'number' ? defaultPos : this.getCursorPos()
     let val = this.query
     const splitVal = val.split('')
     if (pos >= splitVal.length) {
@@ -53,7 +54,7 @@ export class EditorComponent implements OnInit {
 
   toggleComment() {
     const pos = this.getCursorPos()
-    const posAfterNewLine = this.posAfterNextNewLine()
+    const posAfterNewLine = this.posAfterPrevNewLine()
     if (this.query.substr(posAfterNewLine, 2) === '//') {
       this.query = this.query.substr(0, posAfterNewLine) + this.query.substr(posAfterNewLine + 2)
       setTimeout(() => {
@@ -66,13 +67,20 @@ export class EditorComponent implements OnInit {
 
   addAfterLine(text) {
     const posAfterNewLine = this.posAfterNextNewLine()
+    console.log('posAfterNewLine', posAfterNewLine)
     this.add(text, posAfterNewLine)
+  }
+
+  protected posAfterPrevNewLine() {
+    const pos = this.getCursorPos()
+    const text: string = this.query.substr(0, pos)
+    return text.lastIndexOf('\n') + 1
   }
 
   protected posAfterNextNewLine() {
     const pos = this.getCursorPos()
-    const text: string = this.query.substr(0, pos)
-    return text.lastIndexOf('\n') + 1
+    const text: string = this.query.substr(pos)
+    return pos + text.indexOf('\n') + 1
   }
 
   protected getCursorPos() {
@@ -93,7 +101,8 @@ export class EditorComponent implements OnInit {
     this.selectText(pos)
   }
 
-  protected getNextSnippetPos(pos = this.getCursorPos()) {
+  protected getNextSnippetPos(defaultPos = null) {
+    const pos = typeof defaultPos === 'number' ? defaultPos : this.getCursorPos()
     const upcomingText = this.query.substr(pos)
     const found = upcomingText.match(this.snippetRegex)
     if (!found) return pos === 0 ? null : this.getNextSnippetPos(0)
