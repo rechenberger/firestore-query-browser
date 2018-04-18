@@ -88,7 +88,7 @@ export class EditorComponent implements OnInit {
   }
 
   protected getCursorPos() {
-    return this.editor.nativeElement.selectionStart
+    return this.editor.nativeElement.selectionEnd
   }
 
   protected setCursorPos(pos) {
@@ -121,5 +121,6 @@ export class EditorComponent implements OnInit {
     const { start, end } = pos
     this.editor.nativeElement.selectionStart = start
     this.editor.nativeElement.selectionEnd = end
+    this.editor.nativeElement.focus()
   }
 }

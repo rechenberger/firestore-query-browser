@@ -1,9 +1,26 @@
 :host, mat-form-field {
   width: 100%;
   display: block;
+  position: relative;
 }
 
 textarea {
   height: 80px;
   width: 100%;
+}
+
+.next {
+  width: 32px;
+  height: 32px;
+  line-height: 0;
+  position: absolute;
+  bottom: 9px;
+  right: -4px;
+  background: white;
+  opacity: 0;
+  transition: opacity .3s ease;
+
+  &.visible {
+    opacity: 1;
+  }
 }

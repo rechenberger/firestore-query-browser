@@ -2,3 +2,7 @@
   <textarea #editor class="query" matInput placeholder="query (ctrl + enter or shift + enter to fetch)" [(ngModel)]="query"
     (keydown.Tab)="tab($event)" (ngModelChange)="queryChange.emit($event)"></textarea>
 </mat-form-field>
+
+<button class="next" mat-icon-button (click)="tab($event)" [class.visible]="snippetInQuery()">
+  <mat-icon>chevron_right</mat-icon>
+</button>
