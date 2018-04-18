@@ -65,9 +65,17 @@ export class EditorComponent implements OnInit {
     this.add('//', posAfterNewLine)
   }
 
-  addAfterLine(text) {
+  addAfterLine(inputText) {
+    let text = inputText
+    if (this.query.indexOf('\n') === -1) {
+      text = '\n' + text
+    }
     const posAfterNewLine = this.posAfterNextNewLine()
     this.add(text, posAfterNewLine)
+  }
+
+  snippetInQuery() {
+    return !!this.query.match(this.snippetRegex)
   }
 
   protected setQuery(query) {
@@ -94,10 +102,6 @@ export class EditorComponent implements OnInit {
   protected setCursorPos(pos) {
     this.editor.nativeElement.selectionStart = pos
     this.editor.nativeElement.selectionEnd = pos
-  }
-
-  snippetInQuery() {
-    return !!this.query.match(this.snippetRegex)
   }
 
   protected selectNextSnippet(defaultPos = null) {
