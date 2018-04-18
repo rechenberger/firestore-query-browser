@@ -29,9 +29,8 @@ export class EditorComponent implements OnInit {
       splitVal[pos] = `${text}${splitVal[pos]}`
     }
     val = splitVal.join('')
-    this.query = val
+    this.setQuery(val)
     this.editor.nativeElement.focus()
-    this.queryChange.emit(this.query)
 
     setTimeout(() => {
       if (this.snippetInQuery()) return this.selectNextSnippet(pos)
@@ -57,7 +56,7 @@ export class EditorComponent implements OnInit {
     const pos = this.getCursorPos()
     const posAfterNewLine = this.posAfterPrevNewLine()
     if (this.query.substr(posAfterNewLine, 2) === '//') {
-      this.query = this.query.substr(0, posAfterNewLine) + this.query.substr(posAfterNewLine + 2)
+      this.setQuery(this.query.substr(0, posAfterNewLine) + this.query.substr(posAfterNewLine + 2))
       setTimeout(() => {
         this.setCursorPos(pos)
       }, 0)
@@ -69,6 +68,11 @@ export class EditorComponent implements OnInit {
   addAfterLine(text) {
     const posAfterNewLine = this.posAfterNextNewLine()
     this.add(text, posAfterNewLine)
+  }
+
+  protected setQuery(query) {
+    this.query = query
+    this.queryChange.emit(this.query)
   }
 
   protected posAfterPrevNewLine() {
