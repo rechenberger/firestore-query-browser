@@ -68,7 +68,6 @@ export class EditorComponent implements OnInit {
 
   addAfterLine(text) {
     const posAfterNewLine = this.posAfterNextNewLine()
-    console.log('posAfterNewLine', posAfterNewLine)
     this.add(text, posAfterNewLine)
   }
 
