@@ -22,14 +22,12 @@ export class CreateDialogComponent implements OnInit {
   ) { }
 
   input: ''
-
   lengthToCreate = 0
-
   loading = false
   done = false
-
-  doneCount
+  doneCount: Observable<number>
   percentage
+  error: string
 
   ngOnInit() {
   }
@@ -61,7 +59,13 @@ export class CreateDialogComponent implements OnInit {
 
     this.doneCount
       .takeLast(1)
-      .do(() => this.done = true)
+      .catch(error => {
+        const err = error.toString()
+        this.error = err
+        this.snackbar.open(err, 'OK', { duration: 4000 })
+        return Observable.of(null)
+      })
+      .finally(() => this.done = true)
       .subscribe(() => null)
   }
 

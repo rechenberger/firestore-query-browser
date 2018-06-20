@@ -62,7 +62,6 @@ export class DataService {
       .delete()
   }
 
-
   deletePaths(paths: string[]) {
     const chunks = _.chunk(paths, 20)
 
@@ -152,6 +151,7 @@ export class DataService {
               doneCount++
               subject.next(doneCount)
             })
+            .catch(err => subject.error(err))
         ))
       }
     }
@@ -186,6 +186,7 @@ export class DataService {
               doneCount++
               subject.next(doneCount)
             })
+            .catch(err => subject.error(err))
         ))
       }
     }

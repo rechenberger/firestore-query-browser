@@ -1,4 +1,4 @@
-<div class="root">
+<div class="root" [class.errored]="error">
   <div class="flex-row">
     <h2 mat-dialog-title>
       Creating
@@ -6,6 +6,9 @@
   </div>
   <mat-dialog-content>
     <ng-container *ngIf="loading; else preLoading">
+      <div class="error" *ngIf="error">
+        {{ error }}
+      </div>
       <div class="counter">
         <span>{{(doneCount | async)}}</span>
         <span>/</span>
