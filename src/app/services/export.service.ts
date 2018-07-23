@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { unparse } from 'papaparse'
 import * as _ from 'lodash'
+import * as dotize from 'dotize'
 
 @Injectable()
 export class ExportService {
@@ -22,7 +23,8 @@ export class ExportService {
 
   asCsv(path: string, entries: any[]) {
     const filename = path.split('/').pop()
-    const csv = unparse(_.map(entries, entry => entry.data))
+    const doc = _.map(entries, entry => dotize.convert(entry.data))
+    const csv = unparse(doc)
     this.download(`${filename}.csv`, csv)
   }
 
