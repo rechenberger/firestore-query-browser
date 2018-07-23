@@ -35,16 +35,17 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component'
 import { CreateDialogComponent } from './components/create-dialog/create-dialog.component'
 import { EditorComponent } from './components/editor/editor.component'
-import { DialogService } from './services/dialog.service';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { AddAppComponent } from './components/add-app/add-app.component';
-import { QueryInputComponent } from './components/query-input/query-input.component';
-import { QuerySnippetsComponent } from './components/query-snippets/query-snippets.component';
-import { QueryHistoryComponent } from './components/query-history/query-history.component';
+import { DialogService } from './services/dialog.service'
+import { ToolbarComponent } from './components/toolbar/toolbar.component'
+import { AddAppComponent } from './components/add-app/add-app.component'
+import { QueryInputComponent } from './components/query-input/query-input.component'
+import { QuerySnippetsComponent } from './components/query-snippets/query-snippets.component'
+import { QueryHistoryComponent } from './components/query-history/query-history.component'
 import { QueryActionsComponent } from './components/query-actions/query-actions.component'
-import { UtilService } from './services/util.service';
-import { ResultTableComponent } from './components/result-table/result-table.component';
-import { EntryMenuButtonComponent } from './components/entry-menu-button/entry-menu-button.component';
+import { UtilService } from './services/util.service'
+import { ResultTableComponent } from './components/result-table/result-table.component'
+import { EntryMenuButtonComponent } from './components/entry-menu-button/entry-menu-button.component'
+import { ExportService } from './services/export.service'
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { EntryMenuButtonComponent } from './components/entry-menu-button/entry-m
     DialogService,
     HistoryService,
     UtilService,
-    GoogleAnalyticsService
+    GoogleAnalyticsService,
+    ExportService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

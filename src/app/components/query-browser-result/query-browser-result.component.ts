@@ -2,7 +2,8 @@ import { Component, OnChanges, Input } from '@angular/core'
 import { AppsService } from '../../services/apps.service'
 import { DataService } from '../../services/data.service'
 import { DialogService } from '../../services/dialog.service'
-import { UtilService } from '../../services/util.service';
+import { UtilService } from '../../services/util.service'
+import { ExportService } from '../../services/export.service'
 
 @Component({
   selector: 'app-query-browser-result',
@@ -23,7 +24,8 @@ export class QueryBrowserResultComponent implements OnChanges {
     private apps: AppsService,
     private data: DataService,
     private dialog: DialogService,
-    private util: UtilService
+    private util: UtilService,
+    private exportSrv: ExportService
   ) { }
 
   ngOnChanges(changes) {
@@ -33,6 +35,10 @@ export class QueryBrowserResultComponent implements OnChanges {
         ? this.result
         : [this.result]
     }
+  }
+
+  export() {
+    this.exportSrv.asCsv(this.path, this.entries)
   }
 
 }
