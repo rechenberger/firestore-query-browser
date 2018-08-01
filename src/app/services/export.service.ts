@@ -28,4 +28,10 @@ export class ExportService {
     this.download(`${filename}.csv`, csv)
   }
 
+  asJson(path: string, entries: any[]) {
+    const filename = path.split('/').pop()
+    const json = JSON.stringify(entries, null, 2)
+    this.download(`${filename}.json`, json)
+  }
+
 }

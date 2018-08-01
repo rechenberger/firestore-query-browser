@@ -37,8 +37,12 @@ export class QueryBrowserResultComponent implements OnChanges {
     }
   }
 
-  export() {
+  exportCsv() {
     this.exportSrv.asCsv(this.path, this.entries)
+  }
+
+  exportJson() {
+    this.exportSrv.asJson(this.path, this.entries)
   }
 
 }

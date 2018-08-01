@@ -3,7 +3,11 @@
     <h3>Result</h3>
     <!-- <span>{{entries?.length || 0}} entries found</span> -->
     <div class="flex-1"></div>
-    <button mat-button (click)="export()" style="margin-right: 8px;">EXPORT</button>
+    <button mat-button [matMenuTriggerFor]="menu" style="margin-right: 8px;">EXPORT</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="exportJson()">JSON</button>
+      <button mat-menu-item (click)="exportCsv()">CSV</button>
+    </mat-menu>
     <mat-button-toggle-group [(value)]="showTable">
       <mat-button-toggle [value]="false">
         JSON
