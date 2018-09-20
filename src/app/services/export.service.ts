@@ -30,7 +30,8 @@ export class ExportService {
 
   asJson(path: string, entries: any[]) {
     const filename = path.split('/').pop()
-    const json = JSON.stringify(entries, null, 2)
+    const docs = _.map(entries, entry => entry.data)
+    const json = JSON.stringify(docs, null, 2)
     this.download(`${filename}.json`, json)
   }
 
