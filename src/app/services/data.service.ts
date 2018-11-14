@@ -31,13 +31,24 @@ export class DataService {
     }
   }
 
+  protected setWindowResult(result, options) {
+    const win = window as any
+    const windowResults = this.isCollection(options.path)
+      ? _.map(result, item => item.data)
+      : result.data
+    win.r = windowResults
+    win.result = windowResults
+  }
+
   async get(options: any = {}) {
-    return this.ref(options)
+    const result = await this.ref(options)
       .get()
       .then(docs => this.isCollection(options.path)
         ? docs.docs.map(this.snapshotToData)
         : this.snapshotToData(docs)
       )
+    this.setWindowResult(result, options)
+    return result
   }
 
   ref(options: any = {}) {
