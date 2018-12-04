@@ -41,13 +41,18 @@ export class DataService {
   }
 
   async get(options: any = {}) {
-    const result = await this.ref(options)
-      .get()
-      .then(docs => this.isCollection(options.path)
-        ? docs.docs.map(this.snapshotToData)
-        : this.snapshotToData(docs)
-      )
+    const ref = this.ref(options)
+
+    console.time('get')
+    const docs = await ref.get()
+    console.timeEnd('get')
+
+    const result = this.isCollection(options.path)
+      ? docs.docs.map(this.snapshotToData)
+      : this.snapshotToData(docs)
+
     this.setWindowResult(result, options)
+
     return result
   }
 
