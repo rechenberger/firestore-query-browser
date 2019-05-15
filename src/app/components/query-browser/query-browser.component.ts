@@ -8,6 +8,7 @@ import { AppsService } from '../../services/apps.service'
 import { HistoryService } from '../../services/history.service'
 import { Router } from '@angular/router'
 import { EditorComponent } from '../editor/editor.component';
+import { QueryService } from '../../services/query.service';
 
 @Component({
   selector: 'app-query-browser',
@@ -22,13 +23,11 @@ export class QueryBrowserComponent implements OnInit {
     private dialog: DialogService,
     private appsSrv: AppsService,
     private router: Router,
-    private historySrv: HistoryService
+    private historySrv: HistoryService,
+    public query: QueryService
   ) { }
 
   @ViewChild('editor') editor: EditorComponent
-
-  path = 'dinosaurs'
-  query = 'ref'
 
   result = Promise.resolve(null)
   loading = false
@@ -44,20 +43,19 @@ export class QueryBrowserComponent implements OnInit {
     })
   }
 
-  fetchResults(options = { addToHistory: true }) {
+  async fetchResults(options = { addToHistory: true }) {
+    const fq = await this.query.fullQuery.take(1).toPromise()
+
     const { addToHistory } = options
     this.loading = true
-    this.result = this.data.get({
-      path: this.path,
-      query: this.query
-    })
+    this.result = this.data.get(fq)
 
     this.result
       .catch(err => this.snackbar.open(err, 'OK', { duration: 5000 }))
       .then(() => this.loading = false)
 
     if (addToHistory) {
-      this.historySrv.addEntry({ path: this.path, query: this.query })
+      this.historySrv.addEntry(fq)
     }
   }
 

@@ -29,19 +29,26 @@
 <div class="flex-row-responsive top-row">
   <div class="flex-1" style="flex: 2">
     <mat-card>
-      <app-query-input [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-input>
+      <app-query-input [path]="(query.fullQuery | async)?.path" (pathChange)="query.setPath($event)"
+        [query]="(query.fullQuery | async)?.query" (queryChange)="query.setQuery($event)" (fetch)="fetchResults()">
+      </app-query-input>
       <div class="flex-row">
-        <app-editor #editor [(query)]="query" (keyup.control.enter)="fetchResults()"></app-editor>
+        <app-editor #editor [query]="(query.fullQuery | async)?.query" (queryChange)="query.setQuery($event)"
+          (keyup.control.enter)="fetchResults()"></app-editor>
       </div>
       <div class="flex-row-responsive">
         <app-query-snippets (addSnippet)="addSnippet($event)"></app-query-snippets>
-        <app-query-actions class="flex-1" [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-actions>
+        <app-query-actions class="flex-1" [path]="(query.fullQuery | async)?.path" (pathChange)="query.setPath($event)"
+          [query]="(query.fullQuery | async)?.query" (queryChange)="query.setQuery($event)" (fetch)="fetchResults()">
+        </app-query-actions>
       </div>
     </mat-card>
   </div>
   <mat-card class="flex-1">
     <!-- <div class="flex-1"></div> -->
-    <app-query-history [(path)]="path" [(query)]="query" (fetch)="fetchResults()"></app-query-history>
+    <app-query-history [path]="(query.fullQuery | async)?.path" (pathChange)="query.setPath($event)"
+      [query]="(query.fullQuery | async)?.query" (queryChange)="query.setQuery($event)" (fetch)="fetchResults()">
+    </app-query-history>
   </mat-card>
 </div>
 <!-- <mat-card style="padding-top: 0; padding-bottom: 0; margin-top: 16px">
@@ -49,5 +56,6 @@
 
 <mat-card style="margin-top: 16px;">
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-  <app-query-browser-result [result]="result | async" [path]="path"></app-query-browser-result>
+  <app-query-browser-result [result]="result | async" [path]="(query.fullQuery | async)?.path">
+  </app-query-browser-result>
 </mat-card>

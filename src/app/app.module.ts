@@ -46,6 +46,7 @@ import { UtilService } from './services/util.service'
 import { ResultTableComponent } from './components/result-table/result-table.component'
 import { EntryMenuButtonComponent } from './components/entry-menu-button/entry-menu-button.component'
 import { ExportService } from './services/export.service'
+import { QueryService } from './services/query.service'
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { ExportService } from './services/export.service'
     UtilService,
     GoogleAnalyticsService,
     ExportService,
+    QueryService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
