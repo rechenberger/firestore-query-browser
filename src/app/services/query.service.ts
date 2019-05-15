@@ -2,7 +2,6 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { Injectable } from '@angular/core'
 import * as _ from 'lodash'
-import 'rxjs-compat/add/operator/startWith'
 import { HistoryService } from './history.service'
 
 export interface FullQuery {
