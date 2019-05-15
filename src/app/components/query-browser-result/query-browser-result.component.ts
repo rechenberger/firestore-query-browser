@@ -4,6 +4,7 @@ import { DataService } from '../../services/data.service'
 import { DialogService } from '../../services/dialog.service'
 import { UtilService } from '../../services/util.service'
 import { ExportService } from '../../services/export.service'
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-query-browser-result',
@@ -16,6 +17,9 @@ export class QueryBrowserResultComponent implements OnChanges {
   @Input() path: string
 
   entries
+  maxJsonLength = 10
+  entriesForJson
+
   isCollection
 
   showTable = true
@@ -34,6 +38,8 @@ export class QueryBrowserResultComponent implements OnChanges {
       this.entries = this.isCollection
         ? this.result
         : [this.result]
+
+      this.entriesForJson = _.chunk(this.entries, this.maxJsonLength)[0]
     }
   }
 

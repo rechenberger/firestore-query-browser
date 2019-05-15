@@ -21,7 +21,10 @@
     <app-result-table [entries]="entries"></app-result-table>
   </ng-container>
   <ng-template #jsonTemplate>
-    <ng-container *ngFor="let entity of entries">
+    <ng-container *ngIf="entries.length > maxJsonLength">
+      <h2>Only Showing {{maxJsonLength}} of {{entries.length}}</h2>
+    </ng-container>
+    <ng-container *ngFor="let entity of entriesForJson">
       <ng-container *ngIf="entity; else noEntity">
         <div class="item">
           <pre>{{entity?.data || null | json}}</pre>
