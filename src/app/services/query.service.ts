@@ -26,11 +26,9 @@ export class QueryService {
 
     this.fullQuery
       .do(fq => this.fullQueryCached = fq)
-      .do((fq) => console.log('fq', fq))
       .subscribe()
 
     this.route.queryParams
-      .do((queryParams) => console.log('queryParams', queryParams))
       .subscribe()
 
     this.initFirstHistory()
@@ -47,7 +45,6 @@ export class QueryService {
 
   private fullQueryByRouteFiltered = this.fullQueryByRoute
     .filter(fq => this.isFullQueryValid(fq))
-    .do((filtered) => console.log('filtered', filtered))
 
   fullQuery = this.fullQueryDefault
     .take(1)
