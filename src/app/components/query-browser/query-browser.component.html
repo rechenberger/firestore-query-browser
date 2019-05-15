@@ -46,8 +46,7 @@
   </div>
   <mat-card class="flex-1">
     <!-- <div class="flex-1"></div> -->
-    <app-query-history [path]="(query.fullQuery | async)?.path" (pathChange)="query.setPath($event)"
-      [query]="(query.fullQuery | async)?.query" (queryChange)="query.setQuery($event)" (fetch)="fetchResults()">
+    <app-query-history (fetch)="fetchResults()">
     </app-query-history>
   </mat-card>
 </div>
