@@ -15,7 +15,7 @@ export class QueryHistoryComponent implements OnInit {
   @Output() fetch = new EventEmitter()
 
 
-  historyEntries = this.historySrv.getHistory()
+  historyEntries = this.historySrv.history
 
   constructor(
     public historySrv: HistoryService
@@ -23,7 +23,7 @@ export class QueryHistoryComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.loadFirstHistoryEntry()
+      // this.loadFirstHistoryEntry()
     }, 0)
   }
 

@@ -2,7 +2,7 @@ import { StorageService } from './storage.service'
 import { AppsService } from './apps.service'
 import { Injectable } from '@angular/core'
 import * as _ from 'lodash'
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'
 
 @Injectable()
 export class HistoryService {
@@ -12,22 +12,20 @@ export class HistoryService {
     private storage: StorageService
   ) { }
 
+  history: Observable<any> = this.getKey()
+    .switchMap(key => this.storage.watch<{}[]>(key, []))
+    .publishReplay(1)
+    .refCount()
+
   getKey() {
     return this.apps.activeProjectIdChanged
       .asObservable()
       .map(projectId => `history-${projectId}`)
   }
 
-  getHistory() {
-    return this.getKey()
-      .switchMap(key => this.storage.watch<{}[]>(key, []))
-      .publishReplay(1)
-      .refCount()
-  }
-
   addEntry(newEntry) {
     Observable.combineLatest([
-      this.getHistory(),
+      this.history,
       this.getKey()
     ])
       .take(1)
@@ -40,7 +38,7 @@ export class HistoryService {
 
   removeEntry(entry) {
     Observable.combineLatest([
-      this.getHistory(),
+      this.history,
       this.getKey()
     ])
       .take(1)
@@ -62,5 +60,14 @@ export class HistoryService {
 
   protected removeEntryFromList(entry, list) {
     return _.filter(list, e => !(e.path === entry.path && e.query === entry.query))
+  }
+
+  async getFirstHistoryEntry() {
+    const entries = await this.history.take(1).toPromise()
+    if (!!entries && !!entries.length) {
+      return entries[0]
+    } else {
+      return null
+    }
   }
 }
