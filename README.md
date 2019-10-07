@@ -1,3 +1,5 @@
+[![Mentioned in awesome-firebase](https://awesome.re/mentioned-badge.svg)](https://github.com/jthegedus/awesome-firebase)
+
 # Firestore Query Browser
 
 ![Overview](https://github.com/rechenberger/firestore-query-browser/raw/master/docs/overview.jpg)
