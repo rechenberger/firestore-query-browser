@@ -62,6 +62,13 @@ Strings that match an ISO datetime regex will be transformed into a date object 
 }
 ```
 
+If you want to query a date use `new Date()` around it:
+
+```js
+ref
+  .where('created', '>=', new Date('2020-08-12T00:00'))
+```
+
 ### Deleting a key
 To delete a key in a document update it with `__del__` as value. For example:
 ```json
